@@ -1,3 +1,5 @@
+[한국어, Korean](https://github.com/kcdevdes/UMB-KOSA-web/blob/main/README-kr.md)
+
 # KOSA - UMass Boston Korean Student Association
 
 Welcome to the official website of the Korean Student Association (KOSA) at UMass Boston! This site serves as a hub for our members, providing updates on events, activities, and community engagement.
@@ -17,6 +19,15 @@ KOSA is dedicated to connecting Korean students and those interested in Korean c
 - **Event Announcements**: Stay updated with upcoming gatherings and activities.
 - **Activity Highlights**: Browse through our past events and achievements.
 - **Community Engagement**: Opportunities to connect and participate in student life.
+
+## 🔧 Setup Instructions
+
+```bash
+git clone https://github.com/kcdevdes/UMB-KOSA-web.git
+cd UMB-KOSA-web
+npm install
+npm run dev
+```
 
 ## 🤝 Contributing
 
