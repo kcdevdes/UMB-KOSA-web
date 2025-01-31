@@ -16,6 +16,13 @@ export default function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@umb\.edu$/;
+    if (!emailRegex.test(formData.email)) {
+      setStatus('Only @umb.edu email addresses are allowed.');
+      return;
+    }
+
     setStatus('Sending...');
 
     try {
