@@ -1,18 +1,26 @@
 'use client';
 
-import Intro from '@/components/AboutUs';
+import AboutUs from '@/components/AboutUs';
+import ContactUs from '@/components/Contact';
+import EventBriefing from '@/components/EventBriefing';
+import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
+import MiniAlbum from '@/components/MiniAlbum';
+import Reference from '@/components/Resource';
+
 import { Navbar } from '@/components/ui/Navbar';
-import { Parallax } from 'react-scroll-parallax';
 
 export default function WelcomePage() {
   return (
     <div>
       <Navbar />
-      <Parallax speed={-100}>
-        <Hero />
-      </Parallax>
-      <Intro />
+      <Hero />
+      <AboutUs />
+      <MiniAlbum />
+      <EventBriefing />
+      <ContactUs />
+      <Reference />
+      <Footer />
     </div>
   );
 }

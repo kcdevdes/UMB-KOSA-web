@@ -1,0 +1,23 @@
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  /* gap: 20px; 사진 간격 조정 */
+}
+
+.embla__slide {
+  flex: 0 0 auto;
+  width: calc(100% / 3); /* 3개의 사진이 한 번에 보이도록 조정 */
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+.embla__slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 1rem;
+}

@@ -1,19 +1,28 @@
+import Button from './ui/Button';
+
 export default function AboutUs() {
   return (
-    <div className="bg-white flex justify-center items-center h-screen flex-col relative z-10">
-      <strong className="text-5xl">What does KOSA do</strong>
+    <div className="bg-white flex justify-center items-center h-screen flex-col">
+      <strong className="text-5xl">What is KOSA?</strong>
       <p className="indent-8 m-10 text-3xl font-normal text-gray-400">
-        <span className="text-gray-800 font-bold">KOSA</span> is a community
-        that connects Korean, Korean-American students and{' '}
-        <span className="text-gray-800 font-bold">
-          those passionate about Korean culture
+        <span className="font-semibold text-gray-800">
+          <span className="text-blue-600">K</span>
+          <span className="text-blue-600">O</span>
+          <span className="text-red-600">S</span>
+          <span className="text-red-600">A</span>
+        </span>{' '}
+        is a vibrant community uniting Korean, Korean-American students, and
+        anyone with a passion for Korean culture. It’s a place where you can{' '}
+        <span className="font-normal text-gray-700">
+          connect with our members and leadership team, discover our past and
+          ongoing activities
         </span>
-        . Here, you can meet our members and leadership team, explore past and
-        ongoing activities, and stay updated on the latest events. More than
-        just a student organization, we strive to create a welcoming and
-        inclusive space where meaningful connections are made and lasting
-        memories are created.
+        , and stay informed about upcoming events. More than just a student
+        organization, we are dedicated to fostering an inclusive and welcoming
+        space where meaningful connections thrive and unforgettable memories are
+        made.
       </p>
+      <Button>See Who We Are ➜</Button>
     </div>
   );
 }

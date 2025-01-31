@@ -2,7 +2,7 @@
 
 export default function Hero() {
   return (
-    <div className="bg-no-repeat bg-cover bg-center bg-[url('/images/sample-bg.jpg')] min-h-screen w-full relative top-0 -z-10">
+    <div className="bg-no-repeat bg-cover bg-center bg-[url('/images/sample-bg.jpg')] h-screen w-full">
       <div className="flex justify-center items-center h-screen flex-col">
         <h1
           className="text-9xl text-white font-extrabold"
