@@ -5,7 +5,7 @@ import ContactUs from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import MiniAlbum from '@/components/MiniAlbum';
-import Reference from '@/components/Resource';
+import Reference from '@/components/Reference';
 
 import { Navbar } from '@/components/ui/Navbar';
 
