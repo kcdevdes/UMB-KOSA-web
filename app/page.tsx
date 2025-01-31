@@ -2,11 +2,10 @@
 
 import AboutUs from '@/components/AboutUs';
 import ContactUs from '@/components/Contact';
-import EventBriefing from '@/components/EventBriefing';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import MiniAlbum from '@/components/MiniAlbum';
-import Reference from '@/components/Resource';
+import Reference from '@/components/Reference';
 
 import { Navbar } from '@/components/ui/Navbar';
 
@@ -17,7 +16,6 @@ export default function WelcomePage() {
       <Hero />
       <AboutUs />
       <MiniAlbum />
-      <EventBriefing />
       <ContactUs />
       <Reference />
       <Footer />
