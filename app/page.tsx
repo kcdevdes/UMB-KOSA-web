@@ -1,15 +1,26 @@
-import { Navbar } from '@/components/Navbar';
+'use client';
+
+import AboutUs from '@/components/AboutUs';
+import ContactUs from '@/components/Contact';
+import EventBriefing from '@/components/EventBriefing';
+import Footer from '@/components/Footer';
+import Hero from '@/components/Hero';
+import MiniAlbum from '@/components/MiniAlbum';
+import Reference from '@/components/Resource';
+
+import { Navbar } from '@/components/ui/Navbar';
 
 export default function WelcomePage() {
   return (
-    <div className="bg-no-repeat bg-cover bg-center bg-[url('/images/sample-bg.jpg')] min-h-screen w-full">
+    <div>
       <Navbar />
-      <div className="flex justify-center items-center h-screen flex-col">
-        <h1 className="text-9xl text-white font-extrabold">KOSA</h1>
-        <h1 className="text-2xl text-white font-extrabold">
-          Korean Student Association at UMass Boston
-        </h1>
-      </div>
+      <Hero />
+      <AboutUs />
+      <MiniAlbum />
+      <EventBriefing />
+      <ContactUs />
+      <Reference />
+      <Footer />
     </div>
   );
 }

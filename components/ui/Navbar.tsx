@@ -60,15 +60,21 @@ export const Navbar = () => {
       </div>
       {isMobile && menuOpen && (
         <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 flex flex-col gap-2">
-          <a href="#about" className="text-xl">
+          <Link href="/" className="text-lg text-black">
+            Home
+          </Link>
+
+          <Link href="/about" className="text-lg  text-black">
             About
-          </a>
-          <a href="#gallery" className="text-xl">
+          </Link>
+
+          <Link href="/gallery" className="text-lg  text-black">
             Gallery
-          </a>
-          <a href="#calendar" className="text-xl">
+          </Link>
+
+          <Link href="/calendar" className="text-lg  text-black">
             Calendar
-          </a>
+          </Link>
         </div>
       )}
     </nav>
