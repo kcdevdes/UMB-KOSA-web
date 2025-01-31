@@ -19,7 +19,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full flex items-center justify-between p-4 bg-beacon-blue shadow-md opacity-85 fixed top-0 left-0 z-50">
+    <nav className="w-full flex items-center justify-between p-4 bg-beacon-blue shadow-md opacity-100 fixed top-0 left-0 z-50">
       <div className="flex items-center gap-4">
         <Image
           src="/images/kosa-logo.jpg"
