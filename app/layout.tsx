@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Providers } from './providers';
 import './globals.css';
 
 export const viewport = {
@@ -8,7 +7,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'UMB KOSA',
+  title: 'UMB | KOSA',
   description: 'Hello, KOSA!',
 };
 
@@ -19,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
