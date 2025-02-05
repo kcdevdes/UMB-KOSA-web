@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import '../globals.css';
 
 export const metadata: Metadata = {
-  title: 'Gallery | KOSA',
-  description: 'KOSA gallery page',
+  title: 'Contact | KOSA',
+  description: 'Contact to KOSA',
 };
 
-export default function GalleryLayout({
+export default function ContactLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

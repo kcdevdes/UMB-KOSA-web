@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/ui/Navbar';
 
-export default function Gallery() {
+export default function ContactPage() {
   return (
     <div className="w-full h-screen">
       <Navbar />

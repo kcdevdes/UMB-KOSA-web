@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import '../globals.css';
 
 export const metadata: Metadata = {
-  title: 'UMB KOSA',
-  description: 'Hello, KOSA!',
+  title: 'About | KOSA',
+  description: 'About KOSA',
 };
 
-export default function RootLayout({
+export default function AboutLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

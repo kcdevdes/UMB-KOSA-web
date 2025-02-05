@@ -1,7 +1,7 @@
 // lib/firebase-admin.ts
 import admin from 'firebase-admin';
 
-// Firebase Admin SDK가 여러 번 초기화되지 않도록 방지
+// Prevent Firebase from initializing more than once
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert({
@@ -12,5 +12,4 @@ if (!admin.apps.length) {
   });
 }
 
-// Firebase Admin SDK 인스턴스 내보내기
 export default admin;

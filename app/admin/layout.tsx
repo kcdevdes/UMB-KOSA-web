@@ -7,10 +7,8 @@ export const metadata: Metadata = {
   description: 'KOSA Admin Page',
 };
 
-export default function AuthLayout({
-  children,
-}: Readonly<{
+export default function AdminLayout({}: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <AdminProvider />;
+  return <AdminProvider></AdminProvider>;
 }

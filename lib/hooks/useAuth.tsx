@@ -10,7 +10,7 @@ import {
 import { auth } from '../firebase/firebase';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 
-// 🔹 AuthContext 타입 정의
+// Context Type Definition
 interface AuthContextType {
   user: User | null;
   loading: boolean;
@@ -18,15 +18,15 @@ interface AuthContextType {
   logout: () => Promise<void>;
 }
 
-// 🔹 컨텍스트 생성
+// Create Context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 🔹 AuthProvider의 Props 타입
+// Props Type Definition
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-// 🔹 Firebase 인증 로직
+// Get Auth State From Firebase
 function useAuthProvider(): AuthContextType {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -47,7 +47,7 @@ function useAuthProvider(): AuthContextType {
     return () => unsubscribe();
   }, []);
 
-  // 🔹 Firebase 토큰을 서버 API로 전송하여 쿠키 저장
+  // Save auth token to cookie
   const saveAuthToken = async (token: string) => {
     await fetch('/api/auth/set-cookie', {
       method: 'POST',
@@ -56,7 +56,7 @@ function useAuthProvider(): AuthContextType {
     });
   };
 
-  // 🔹 로그아웃 시 쿠키 삭제
+  // Delete auth token from cookie
   const logout = async () => {
     await signOut(auth);
     await fetch('/api/auth/logout', { method: 'POST' });
@@ -66,7 +66,7 @@ function useAuthProvider(): AuthContextType {
   return { user, loading, saveAuthToken, logout };
 }
 
-// 🔹 AuthProvider 컴포넌트
+// AuthProvider Component Definition
 export function AuthProvider({ children }: AuthProviderProps) {
   const authState = useAuthProvider();
   return (
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
-// 🔹 useAuth 훅
+// useAuth Hook Definition
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

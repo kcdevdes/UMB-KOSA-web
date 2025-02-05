@@ -17,25 +17,25 @@ export default function AuthPage() {
   const router = useRouter();
   const { user, loading, saveAuthToken, logout } = useAuth();
 
-  // 환경 변수에서 Firebase 이메일 링크 리디렉트 URL 가져오기
+  // Set redirect url for email link
   const redirectUrl: string =
     process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL || 'http://localhost/auth';
 
-  // ✅ 자동 로그인 로직 개선 (Firebase 오류 해결)
+  // Authmatic login with email link
   useEffect(() => {
     if (
       typeof window !== 'undefined' &&
       isSignInWithEmailLink(auth, window.location.href)
     ) {
-      // ✅ 이미 로그인된 경우, 중복 로그인 방지
+      // Prvent multiple login
       if (auth.currentUser) {
-        console.log('이미 로그인된 상태입니다.');
+        console.log('Already logged in');
         return;
       }
 
       let storedEmail = window.localStorage.getItem('emailForSignIn');
 
-      // ✅ Firebase에서 `auth.currentUser?.email` 사용하여 보완
+      // If there is no email in local storage, try to get it from current user
       if (!storedEmail) {
         storedEmail = auth.currentUser
           ? (auth.currentUser as { email: string }).email
@@ -47,42 +47,41 @@ export default function AuthPage() {
           .then(async (result) => {
             window.localStorage.removeItem('emailForSignIn');
 
-            // ✅ Firebase 토큰 가져오기 및 쿠키 저장
+            // Save token to local storage
             const token = await result.user.getIdToken();
             await saveAuthToken(token);
 
-            setMessage('로그인 성공!');
-            router.push('/'); // 로그인 후 홈으로 이동
+            setMessage('Success! Redirecting...');
+            router.push('/'); // Redirect to home page
           })
           .catch((err) => {
             console.error(err);
 
-            // ✅ auth/invalid-action-code 오류 처리 (새 로그인 시도)
+            // If the link is invalid or expired
             if (err.code === 'auth/invalid-action-code') {
               alert(
-                '로그인 링크가 만료되었거나 이미 사용되었습니다. 다시 로그인해주세요.'
+                'Invalid or expired action code. Please try again to login.'
               );
               window.localStorage.removeItem('emailForSignIn');
-              router.push('/auth'); // 로그인 페이지로 다시 이동
+              router.push('/auth'); // Redirect to login page
             } else {
-              setMessage('로그인 중 오류가 발생했습니다.');
+              setMessage('Error occurred while signing in.');
             }
           });
       } else {
-        // ✅ 이메일을 찾을 수 없는 경우, 로그인 페이지로 이동
-        alert('로그인을 다시 시도해주세요.');
+        alert('Try again to login.');
         router.push('/auth');
       }
     }
   }, [router, saveAuthToken]);
 
-  // ✅ 이메일 입력 후 "링크 전송" 버튼
+  // Send email link to sign in
   const handleSendLink = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     if (!email.endsWith('@umb.edu')) {
-      setMessage('반드시 @umb.edu 도메인의 이메일을 사용해야 합니다!');
+      setMessage('Type email ending with @umb.edu domain');
       setIsLoading(false);
       return;
     }
@@ -95,10 +94,12 @@ export default function AuthPage() {
     try {
       await sendSignInLinkToEmail(auth, email, actionCodeSettings);
       window.localStorage.setItem('emailForSignIn', email);
-      setMessage('이메일로 전송된 링크를 확인하세요!');
+      setMessage(
+        'Please check your email for sign in link. If you cannot find it, please check your Junk Mail folder.'
+      );
     } catch (error) {
       console.error(error);
-      setMessage('링크 전송 중 오류가 발생했습니다.');
+      setMessage('Error occurred while sending email link.');
     } finally {
       setIsLoading(false);
     }

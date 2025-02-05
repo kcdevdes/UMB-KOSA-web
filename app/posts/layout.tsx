@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Take a look at our posts',
 };
 
-export default function GalleryLayout({
+export default function PostsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

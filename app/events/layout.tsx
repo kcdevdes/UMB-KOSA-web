@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Hello, KOSA!',
 };
 
-export default function RootLayout({
+export default function EventsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
