@@ -1,9 +1,10 @@
-import { Navbar } from '@/components/ui/MyNavbar';
+/* eslint-disable @next/next/no-img-element */
+import MyNavbar from '@/components/ui/MyNavbar';
 
 export default function ContactPage() {
   return (
     <div className="w-full h-screen">
-      <Navbar />
+      <MyNavbar />
       <div className="py-10 flex flex-col justify-center items-center ">
         <div className="pt-20">
           <a

@@ -5,16 +5,16 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/useAuth';
 
 export default function AdminPage() {
-  const { user, loading } = useAuth();
+  const { user, authLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push('/auth'); // 🔹 로그인하지 않은 사용자는 로그인 페이지로 이동
+    if (!authLoading && !user) {
+      router.push('/auth'); // Redirect to login page if not logged in
     }
-  }, [loading, user, router]);
+  }, [authLoading, user, router]);
 
-  if (loading) {
+  if (authLoading) {
     return <p>로딩 중...</p>;
   }
 

@@ -41,9 +41,9 @@ export default function AuthPage() {
           await saveAuthToken(token); // 🔥 Firestore 저장 로직은 `saveAuthToken` 내부에서 실행됨
 
           setTimeout(() => router.push('/'), 1000);
-        } catch (err: any) {
+        } catch (err: unknown) {
           console.error(err);
-          if (err.code === 'auth/invalid-action-code') {
+          if ((err as { code: string }).code === 'auth/invalid-action-code') {
             alert('❌ The link has expired. Please try again.');
             window.localStorage.removeItem('emailForSignIn');
           } else {
