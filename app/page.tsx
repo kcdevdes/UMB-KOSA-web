@@ -1,18 +1,17 @@
 'use client';
 
 import AboutUs from '@/components/AboutUs';
-import ContactUs from '@/components/Contact';
+import ContactUs from '@/components/ContactUs';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import MiniAlbum from '@/components/MiniAlbum';
 import Reference from '@/components/Reference';
-
-import { Navbar } from '@/components/ui/Navbar';
+import MyNavbar from '@/components/ui/MyNavbar';
 
 export default function WelcomePage() {
   return (
     <div>
-      <Navbar />
+      <MyNavbar />
       <Hero />
       <AboutUs />
       <MiniAlbum />
