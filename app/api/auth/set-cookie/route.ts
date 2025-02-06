@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
     });
 
     return NextResponse.json(
-      { message: 'Completed', user: decodedToken },
+      { uid: decodedToken.uid, email: decodedToken.email },
       { status: 200 }
     );
   } catch (error) {
