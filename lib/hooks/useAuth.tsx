@@ -15,6 +15,7 @@ interface UserInfo {
   email: string;
   role: string;
   introduction: string;
+  username: string;
 }
 
 // Context Type Definition

@@ -6,8 +6,7 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import Image from 'next/image';
 
 export default function MyNavbar() {
-  const { user } = useAuth();
-
+  const { user, userInfo } = useAuth();
   return (
     <Navbar fluid className="fixed z-10 overflow-hidden top-0 w-[100%]">
       <Navbar.Brand>
@@ -28,7 +27,7 @@ export default function MyNavbar() {
             className="bg-korean-red text-white p-3 rounded-full"
             href={'/profile'}
           >
-            Profile
+            Hello, {userInfo?.username ?? 'User'}
           </Link>
         ) : (
           <Link
