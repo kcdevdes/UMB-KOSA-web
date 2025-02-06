@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import admin from '@/lib/firebase/firebase-admin';
+import { admin } from '@/lib/firebase/firebase-admin';
 
 export const GET = async () => {
   try {
@@ -13,7 +13,7 @@ export const GET = async () => {
       { message: '인증 성공', user: decodedToken },
       { status: 200 }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: '유효하지 않은 토큰' }, { status: 401 });
   }
 };
