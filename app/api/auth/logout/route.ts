@@ -5,9 +5,9 @@ export const POST = async () => {
   (await cookies()).set({
     name: 'token',
     value: '',
-    expires: new Date(0), // 쿠키 삭제
+    expires: new Date(0), // Delete Cookie
     path: '/',
   });
 
-  return NextResponse.json({ message: '로그아웃 완료' }, { status: 200 });
+  return NextResponse.json({ message: 'Log Out Completed' }, { status: 200 });
 };

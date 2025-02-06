@@ -9,7 +9,7 @@ import { auth, db } from '../firebase/firebase';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
-// ✅ User 정보 타입 정의
+// Firestore User Info Type Definition
 interface UserInfo {
   uid: string;
   email: string;
@@ -34,7 +34,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-// ✅ Firestore에서 유저 데이터 가져오기
+// Fetch user info from Firestore
 async function fetchUserInfo(uid: string): Promise<UserInfo | null> {
   try {
     const userRef = doc(db, 'users', uid);
@@ -50,7 +50,7 @@ async function fetchUserInfo(uid: string): Promise<UserInfo | null> {
   }
 }
 
-// ✅ Firestore에 새 유저 정보 저장 (이메일 링크 로그인 후에 실행됨)
+// ✅ Save new user info to Firestore (executed after email link login)
 async function saveUserToFirestore(uid: string, email: string) {
   try {
     const res = await fetch('/api/auth/save-user', {
@@ -59,13 +59,13 @@ async function saveUserToFirestore(uid: string, email: string) {
       body: JSON.stringify({ uid, email }),
     });
     const data = await res.json();
-    console.log('✅ Firestore 저장 응답:', data);
+    console.log('✅ Firestore save response:', data);
   } catch (error) {
-    console.error('❌ Firestore 저장 실패:', error);
+    console.error('❌ Firestore save failed:', error);
   }
 }
 
-// ✅ Firebase Auth 토큰 저장 후 Firestore에 유저 저장 실행
+// ✅ Save Firebase Auth token and then store user info in Firestore
 async function saveAuthToken(token: string) {
   try {
     const res = await fetch('/api/auth/set-cookie', {
@@ -74,16 +74,16 @@ async function saveAuthToken(token: string) {
       body: JSON.stringify({ token }),
     });
     const { uid, email } = await res.json();
-    console.log('✅ Firebase 토큰 저장 완료');
+    console.log('✅ Firebase token saved successfully');
 
-    // 🔥 Firestore에 유저 정보 저장 (로그인 성공 후 실행)
+    // 🔥 Save user info to Firestore (executed after successful login)
     await saveUserToFirestore(uid, email);
   } catch (error) {
     console.error('Error saving auth token:', error);
   }
 }
 
-// ✅ 로그인 감지 (이제 Firestore 저장을 로그인 후로 이동)
+// Detect authentication state changes
 function useAuthProvider(): AuthContextType {
   const [user, setUser] = useState<User | null>(null);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);

@@ -27,14 +27,14 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
     });
 
-    console.log(`✅ Firestore 저장 완료: /users/${uid}`);
+    console.log(`✅ Firestore save completed: /users/${uid}`);
 
     return NextResponse.json({
       success: true,
       message: 'User saved successfully',
     });
   } catch (error) {
-    console.error('❌ Firestore 저장 실패:', error);
+    console.error('❌ Firestore failed to save:', error);
     return NextResponse.json({ error: 'Failed to save user' }, { status: 500 });
   }
 }

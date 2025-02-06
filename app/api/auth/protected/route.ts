@@ -6,7 +6,10 @@ export const GET = async () => {
   try {
     const token = (await cookies()).get('token')?.value;
     if (!token) {
-      return NextResponse.json({ error: '인증 실패' }, { status: 401 });
+      return NextResponse.json(
+        { error: 'Failed to authenticate' },
+        { status: 401 }
+      );
     }
 
     // Firebase Emulator 환경 확인
@@ -17,11 +20,11 @@ export const GET = async () => {
       : await admin.auth().verifyIdToken(token);
 
     return NextResponse.json(
-      { message: '인증 성공', user: decodedToken },
+      { message: 'Succeed to authenticate', user: decodedToken },
       { status: 200 }
     );
   } catch (error) {
-    console.error('❌ Firebase ID 토큰 검증 실패:', error);
-    return NextResponse.json({ error: '유효하지 않은 토큰' }, { status: 401 });
+    console.error('❌ Firebase ID Token Verification Failed:', error);
+    return NextResponse.json({ error: 'Invalid Token' }, { status: 401 });
   }
 };
