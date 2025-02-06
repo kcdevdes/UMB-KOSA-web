@@ -46,3 +46,4 @@ firebase.json
 database-debug.log
 firebase-debug.log
 firestore-debug.log
+firestore.rules
