@@ -16,38 +16,37 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  // 사용자 데이터 불러오기
-  const fetchUserData = async () => {
-    if (!user?.uid) return;
-    setLoading(true);
-
-    try {
-      const userRef = doc(db, 'users', user.uid);
-      const snapshot = await getDoc(userRef);
-
-      if (snapshot.exists()) {
-        const userData = snapshot.data();
-        setUsername(userData.username || '');
-      }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      setMessage('❌ Error fetching user data.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 마운트 시 또는 user.uid 바뀔 때 불러오기
+  // when user is not logged in, redirect to login page
   useEffect(() => {
+    const fetchUserData = async () => {
+      if (!user?.uid) return;
+      setLoading(true);
+
+      try {
+        const userRef = doc(db, 'users', user.uid);
+        const snapshot = await getDoc(userRef);
+
+        if (snapshot.exists()) {
+          const userData = snapshot.data();
+          setUsername(userData.username || '');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setMessage('❌ Error fetching user data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (user?.uid) {
       fetchUserData();
     } else if (!authLoading && !user) {
-      // 로그인 안 되어 있으면 접근 제한
+      // prevent an unauthorized user from accessing this page
       router.push('/auth');
     }
   }, [user, authLoading, router]);
 
-  // 사용자 이름 업데이트
+  // update user profile handler
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!user?.uid) return;
