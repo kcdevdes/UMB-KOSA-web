@@ -38,7 +38,7 @@ export default function AuthPage() {
           window.localStorage.removeItem('emailForSignIn');
 
           const token = await result.user.getIdToken();
-          await saveAuthToken(token); // 🔥 Firestore 저장 로직은 `saveAuthToken` 내부에서 실행됨
+          await saveAuthToken(token);
 
           setTimeout(() => router.push('/'), 1000);
         } catch (err: unknown) {

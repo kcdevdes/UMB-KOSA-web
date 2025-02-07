@@ -9,7 +9,7 @@ import MyNavbar from '@/components/ui/MyNavbar';
 import { useRouter } from 'next/navigation';
 
 export default function UserProfile() {
-  const { user, logout, authLoading } = useAuth();
+  const { user, userInfo, logout, authLoading } = useAuth();
   const router = useRouter();
 
   const [username, setUsername] = useState('');
@@ -56,7 +56,6 @@ export default function UserProfile() {
 
     try {
       const userRef = doc(db, 'users', user.uid);
-      // name 필드만 업데이트할 경우에는 setDoc의 merge 옵션을 true로
       await setDoc(userRef, { username: username.trim() }, { merge: true });
 
       setMessage('✅ Profile updated!');
@@ -68,10 +67,13 @@ export default function UserProfile() {
     }
   };
 
-  // 로그아웃 핸들러
   const handleLogout = async () => {
     await logout();
-    router.push('/'); // 홈으로 이동
+    router.push('/');
+  };
+
+  const handleAdmin = async () => {
+    router.push('/admin');
   };
 
   return (
@@ -123,7 +125,18 @@ export default function UserProfile() {
               </Button>
             </form>
 
-            {/* 로그아웃 버튼 */}
+            {userInfo?.role === 'admin' ? (
+              <Button
+                color="warning"
+                className="mt-6"
+                onClick={handleAdmin}
+                disabled={loading}
+                fullSized
+              >
+                Admin
+              </Button>
+            ) : null}
+
             <Button
               color="failure"
               className="mt-6"

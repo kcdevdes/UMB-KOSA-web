@@ -5,12 +5,13 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 export async function POST(req: Request) {
   try {
     const { uid, email } = await req.json();
+
     if (!uid || !email) {
-      console.log('❌ Invalid user data:', { uid, email });
       return NextResponse.json({ error: 'Invalid user data' }, { status: 400 });
     }
 
     const userRef = doc(db, 'users', uid);
+
     const userSnapshot = await getDoc(userRef);
 
     if (userSnapshot.exists()) {
@@ -28,14 +29,11 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
     });
 
-    console.log(`✅ Firestore save completed: /users/${uid}`);
-
     return NextResponse.json({
       success: true,
       message: 'User saved successfully',
     });
-  } catch (error) {
-    console.error('❌ Firestore failed to save:', error);
+  } catch {
     return NextResponse.json({ error: 'Failed to save user' }, { status: 500 });
   }
 }

@@ -4,16 +4,15 @@ import { admin } from '@/lib/firebase/firebase-admin';
 
 export const POST = async (req: Request) => {
   try {
-    const { token } = await req.json();
+    const body = await req.json();
+    const { token } = body;
+
     if (!token) {
+      console.error('❌ No token received');
       return NextResponse.json({ error: 'No Token' }, { status: 400 });
     }
 
-    const isEmulator = process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true';
-
-    const decodedToken = isEmulator
-      ? { uid: 'test-user', email: 'test@umb.edu' }
-      : await admin.auth().verifyIdToken(token);
+    const decodedToken = await admin.auth().verifyIdToken(token);
 
     (await cookies()).set({
       name: 'token',
@@ -28,8 +27,10 @@ export const POST = async (req: Request) => {
       { uid: decodedToken.uid, email: decodedToken.email },
       { status: 200 }
     );
-  } catch (error) {
-    console.error('❌ Firebase ID Failed to verify', error);
-    return NextResponse.json({ error: 'failed' }, { status: 401 });
+  } catch {
+    return NextResponse.json(
+      { error: 'Token verification failed' },
+      { status: 401 }
+    );
   }
 };

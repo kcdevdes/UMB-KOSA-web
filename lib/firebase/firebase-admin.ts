@@ -1,20 +1,19 @@
-// lib/firebase-admin.ts
 import * as admin from 'firebase-admin';
 
 const isEmulator = process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true';
+
+const projectId = process.env.FIREBASE_PROJECT_ID;
 
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: isEmulator
       ? admin.credential.applicationDefault()
       : admin.credential.cert({
-          projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-          clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
-          privateKey: process.env.NEXT_PUBLIC_FIREBASE_PRIVATE_KEY?.replace(
-            /\\n/g,
-            '\n'
-          ),
+          projectId,
+          clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+          privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
         }),
+    projectId,
   });
 }
 
