@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { collection, getDocs, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
 import MyNavbar from '@/components/ui/MyNavbar';
+import Link from 'next/link';
 
 interface Event {
   id: string;
@@ -17,6 +18,7 @@ interface Event {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   thumbnails: string[]; // Allow up to 3 images
+  link: string;
 }
 
 export default function EventPage() {
@@ -108,6 +110,9 @@ export default function EventPage() {
                   {truncateText(event.description, 200)}
                 </p>
                 <p className="text-sm text-gray-500 mt-2">By {event.author}</p>
+                <Link href={event.link}>
+                  <div>Instagram</div>
+                </Link>
               </div>
             </div>
           ))}

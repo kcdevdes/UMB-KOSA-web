@@ -8,24 +8,26 @@ export default function Reference() {
       name: 'KOSA (코사)',
       role: 'Organization',
       link: 'https://www.instagram.com/umb_kosa/',
-      imageUrl: '',
+      imageUrl:
+        'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/308643062_1076838373204387_5369014883573964519_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2AHTgHhPelmZHblAd3voMq6RLtPwP2pXWH9TjIdQA_DDliE14JwUj_iSIzVCsdt8UsLjz0BrDlecS0GHNcsyvPDP&_nc_ohc=9g5wCJ1Xmt8Q7kNvgHIhM0U&_nc_gid=28b7661c708b4a1cae05167e0104f25b&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AYAXQx3Ce67wze8BfIjWmIKOiuEAhUbqPPPDPLFx6dKymQ&oe=67AECE75&_nc_sid=7a9f4b',
     },
     {
       name: 'JongSoo Ha (하종수)',
       role: 'President',
       link: 'https://www.instagram.com/jongsoo1203/',
-      imageUrl: '',
+      imageUrl:
+        'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/429588136_1483830059148104_7832935325382085583_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2AF_PD7H7GfAT3q4PW0Oj38Ld7ZnUQ9Cv5liBaEEgfLaz_3U563c82PANyWClSpXA7qjU47UYhEyHqKNav7DhWkk&_nc_ohc=QE_KRcgg4GoQ7kNvgEPeZtj&_nc_gid=1454ecacc0c24172be1a1479b390d523&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AYCEKwu4svlnPom1jOjuBnZ_Rvcrwr7jJhM87NvP1a0xGw&oe=67AED756&_nc_sid=7a9f4b',
     },
   ];
 
   return (
-    <div className="bg-korean-blue py-24 sm:py-32">
+    <div className="bg-gray-100 py-24 sm:py-32 ">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl">
             Meet Our Social Media
           </h2>
-          <p className="mt-6 text-lg/8 text-white">
+          <p className="mt-6 text-lg/8 text-black">
             We love connecting with diverse people and will keep you updated
             with events and news through social media! Stay tuned! ➜
           </p>
@@ -42,14 +44,14 @@ export default function Reference() {
                   src={link.imageUrl}
                   width={60}
                   height={60}
-                  className="size-24 rounded-full"
+                  className="size-24 rounded-full shadow-lg"
                 />
                 <div>
-                  <h3 className="text-base/7 font-semibold tracking-tight text-white">
+                  <h3 className="text-base/7 font-semibold tracking-tight ">
                     {link.name}
                     <span className="font-thin mx-2">{link.role}</span>
                   </h3>
-                  <p className="text-sm/6 font-semibold text-blue-300">
+                  <p className="text-sm/6 font-semibold">
                     <Link href={link.link}>
                       <Button>
                         <span className="[&>svg]:h-6 [&>svg]:w-6">

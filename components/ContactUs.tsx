@@ -44,7 +44,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="bg-white h-auto flex flex-col justify-center">
+    <div className="bg-gray-100 h-auto flex flex-col justify-center">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 items-center py-12 ">
         <div className="mx-auto max-w-2xl lg:text-center">
           <p className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-right">

@@ -16,7 +16,6 @@ export default function WelcomePage() {
       <AboutUs />
       <MiniAlbum />
       <ContactUs />
-      <Reference />
       <Footer />
     </div>
   );
