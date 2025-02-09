@@ -1,3 +1,4 @@
+import Reference from '@/components/Reference';
 import MyNavbar from '@/components/ui/MyNavbar';
 import { Card } from 'flowbite-react';
 import Image from 'next/image';
@@ -25,14 +26,46 @@ const members = [
     bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
     link: 'https://instagram.com/',
   },
+  {
+    name: 'Jongsoo Ha4',
+    role: 'President',
+    image: '/images/jongsoo_ha.jpg',
+    bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
+    link: 'https://instagram.com/',
+  },
+  {
+    name: 'Jongsoo Ha5',
+    role: 'President',
+    image: '/images/jongsoo_ha.jpg',
+    bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
+    link: 'https://instagram.com/',
+  },
+  {
+    name: 'Jongsoo Ha6',
+    role: 'President',
+    image: '/images/jongsoo_ha.jpg',
+    bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
+    link: 'https://instagram.com/',
+  },
+  {
+    name: 'Jongsoo Ha7',
+    role: 'President',
+    image: '/images/jongsoo_ha.jpg',
+    bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
+    link: 'https://instagram.com/',
+  },
 ];
 
 export default function AboutPage() {
   return (
     <div>
       <MyNavbar />
+      <Reference />
       <div className="mt-20 container mx-auto px-4 py-10 text-center">
-        <h1 className="text-4xl font-bold mb-10">Meet Our Association</h1>
+        <h1 className="text-4xl font-bold mb-10">
+          Meet Our <span className="text-korean-blue font-bold">KO</span>
+          <span className="text-korean-red font-bold">SA</span> Members
+        </h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
           {members.map((member) => (
             <Card key={member.name} className="w-80 p-4 text-center mx-auto">

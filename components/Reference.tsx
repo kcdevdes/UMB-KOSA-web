@@ -8,20 +8,18 @@ export default function Reference() {
       name: 'KOSA (코사)',
       role: 'Organization',
       link: 'https://www.instagram.com/umb_kosa/',
-      imageUrl:
-        'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/308643062_1076838373204387_5369014883573964519_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=107&_nc_ohc=7f4tG3nFt1oQ7kNvgG29k8Q&_nc_gid=306467400c5b46ca90a21037d0bb6483&edm=APoiHPcBAAAA&ccb=7-5&oh=00_AYBmtvCISynvbwZ1uaMkQp_FSN-TPqzmk3lb7Lm2fGFhpw&oe=67A20FF5&_nc_sid=22de04',
+      imageUrl: '',
     },
     {
       name: 'JongSoo Ha (하종수)',
       role: 'President',
       link: 'https://www.instagram.com/jongsoo1203/',
-      imageUrl:
-        'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/429588136_1483830059148104_7832935325382085583_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=108&_nc_ohc=higD3XdPLXUQ7kNvgHQRad4&_nc_gid=0b295f44f33f40bd9fccdd257d57862e&edm=APoiHPcBAAAA&ccb=7-5&oh=00_AYBUxaZ8mJnHy9JG30-6sjoUzK59scTaNhTGh0zB2NCmkg&oe=67A218D6&_nc_sid=22de04',
+      imageUrl: '',
     },
   ];
 
   return (
-    <div className="bg-beacon-blue py-24 sm:py-32">
+    <div className="bg-korean-blue py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
           <h2 className="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">
@@ -29,7 +27,7 @@ export default function Reference() {
           </h2>
           <p className="mt-6 text-lg/8 text-white">
             We love connecting with diverse people and will keep you updated
-            with events and news through social media. Stay tuned! ➜➜➜➜
+            with events and news through social media! Stay tuned! ➜
           </p>
         </div>
         <ul

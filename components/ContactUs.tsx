@@ -85,7 +85,7 @@ export default function ContactUs() {
             />
             <button
               type="submit"
-              className="w-full bg-beacon-blue rounded-full text-white p-3 hover:bg-blue-700"
+              className="w-full rounded-full text-white p-3 bg-korean-red hover:bg-red-800"
             >
               Send Carrier Pigeon!
             </button>

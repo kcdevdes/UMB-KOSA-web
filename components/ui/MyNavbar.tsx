@@ -8,18 +8,23 @@ import Image from 'next/image';
 export default function MyNavbar() {
   const { user } = useAuth();
   return (
-    <Navbar fluid className="fixed z-10 overflow-hidden top-0 w-[100%]">
+    <Navbar
+      fluid
+      className="fixed z-10 overflow-hidden top-0 w-[100%] shadow-lg"
+    >
       <Navbar.Brand>
-        <Image
-          className="rounded-full"
-          src="/images/kosa-logo.jpg"
-          width={50}
-          height={50}
-          alt={'Kosa logo'}
-        ></Image>
-        <span className="ml-2 self-center whitespace-nowrap text-1xl font-bold dark:text-white">
-          UMass KOSA
-        </span>
+        <Link href="/" className="flex">
+          <Image
+            className="rounded-full"
+            src="/images/kosa-logo.jpg"
+            width={50}
+            height={50}
+            alt={'Kosa logo'}
+          ></Image>
+          <span className="ml-2 self-center whitespace-nowrap text-1xl font-bold dark:text-white">
+            UMass KOSA
+          </span>
+        </Link>
       </Navbar.Brand>
       <div className="flex md:order-2">
         {user ? (
@@ -41,19 +46,19 @@ export default function MyNavbar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link className="hover:!text-korean-red" href="/">
+        <Navbar.Link className="hover:!text-gray-400" href="/">
           Home
         </Navbar.Link>
         <Navbar.Link className="hover:!text-korean-red" href="/about">
           About
         </Navbar.Link>
-        <Navbar.Link className="hover:!text-korean-red" href="#">
+        <Navbar.Link className="hover:!text-korean-blue" href="/event">
           Event
         </Navbar.Link>
-        <Navbar.Link className="hover:!text-korean-red" href="#">
+        <Navbar.Link className="hover:!text-korean-yellow" href="/post">
           Post
         </Navbar.Link>
-        <Navbar.Link className="hover:!text-korean-red" href="#">
+        <Navbar.Link className="hover:!text-korean-black" href="/contact">
           Contact
         </Navbar.Link>
       </Navbar.Collapse>
