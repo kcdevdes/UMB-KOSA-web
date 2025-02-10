@@ -4,5 +4,4 @@ export default interface UserData {
   introduction: string;
   role: string;
   username: string;
-  s;
 }
