@@ -1,6 +1,6 @@
 export default function AboutUs() {
   return (
-    <div className="bg-white h-[80vh] flex flex-col justify-center">
+    <div className="bg-gray-100 h-[80vh] flex flex-col justify-center">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 items-center ">
         <div className="mx-auto max-w-2xl lg:text-center">
           <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-korean-black sm:text-5xl lg:text-balance">

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '@/lib/firebase/firebase';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
-import { useAuth } from '@/lib/hooks/useAuth';
+import { useAuth } from '@/lib/hook/useAuth';
 
 interface UserInfo {
   id: string;
