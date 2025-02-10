@@ -1,3 +1,7 @@
+/**
+ * This file is the contact us page for the website. It contains a form that allows users to send an email to the KOSA team.
+ */
+
 'use client';
 
 import { useState } from 'react';
@@ -56,7 +60,7 @@ export default function ContactUs() {
         </div>
         <div className="font-thin text-lg lg:text-xl text-gray-500 mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl lg:text-center lindent-4">
           If you have any questions, or want to join KOSA, feel free to reach
-          out. <br></br> 한국인분들은 언제나 환영해요! 부디 연락해주세요!
+          out. <br></br> 한국인분들은 언제나 환영해요! 꼭 연락주세요!
         </div>
         <div className="max-w-full p-4 mt-12 bg-white rounded-xl shadow-lg">
           <form onSubmit={handleSubmit} className="space-y-4">

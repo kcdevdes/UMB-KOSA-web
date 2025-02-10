@@ -1,3 +1,7 @@
+/**
+ * I love this component because I coded the caurosel very well.
+ */
+
 import Carousel from './ui/Carousel';
 
 export default function MiniAlbum() {

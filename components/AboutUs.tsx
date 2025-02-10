@@ -1,3 +1,8 @@
+/**
+ * AboutUs Component
+ * Show the information about the team members, and Social Media
+ */
+
 export default function AboutUs() {
   return (
     <div className="bg-gray-100 h-[80vh] flex flex-col justify-center">

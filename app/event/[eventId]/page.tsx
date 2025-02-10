@@ -1,3 +1,9 @@
+/**
+ * Event Detail Page
+ * Show the details of a single event, eventId is
+ * required in the URL to fetch the event data
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -18,37 +24,37 @@ import Event from '@/lib/entity/Event';
 import User from '@/lib/entity/User';
 
 export default function EventDetailPage() {
-  const { eventId } = useParams(); // /events/[eventId] 로 넘어온 파라미터
+  const { eventId } = useParams(); // parameter `eventId` from URL
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 이벤트 작성자의 username (또는 null)
+  // the author's username
   const [authorName, setAuthorName] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchEventDetail = async () => {
       try {
-        if (!eventId) return; // URL 파라미터가 없으면 return
+        if (!eventId) return; // return if eventId is not provided
         const docRef = doc(db, 'events', eventId as string);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          // 1) 이벤트 문서 불러오기
+          // 1. set the event data
           const eventData = { id: docSnap.id, ...docSnap.data() } as Event;
           setEvent(eventData);
 
-          // 2) 이벤트의 author(이메일)로 users 컬렉션에서 email == author 인 문서 조회
+          // 2. fetch the author's username
           if (eventData.author) {
             const usersRef = collection(db, 'users');
             const q = query(usersRef, where('email', '==', eventData.author));
             const querySnap = await getDocs(q);
 
             if (!querySnap.empty) {
-              // 첫 번째 문서에 대한 정보만 사용
+              // get the first user document
               const userDoc = querySnap.docs[0];
               const userData = userDoc.data() as User;
 
-              // userData.username 필드가 있으면 authorName 설정
+              // set the author's username
               setAuthorName(userData.username ?? null);
             } else {
               console.log('No user found with that email!');
@@ -67,7 +73,7 @@ export default function EventDetailPage() {
     fetchEventDetail();
   }, [eventId]);
 
-  // 로딩 중일 때
+  // when loading the event data
   if (loading) {
     return (
       <div>
@@ -81,7 +87,7 @@ export default function EventDetailPage() {
     );
   }
 
-  // 이벤트 데이터가 없는 경우
+  // if the event does not exist
   if (!event) {
     return (
       <div>
@@ -95,7 +101,7 @@ export default function EventDetailPage() {
     );
   }
 
-  // 날짜 포맷 함수
+  // format the date and time
   const formatDateTime = (timestamp: Timestamp) => {
     const date = timestamp.toDate();
     return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
@@ -120,7 +126,7 @@ export default function EventDetailPage() {
             {formatDateTime(event.end_date)}
           </p>
 
-          {/* 사용자 이름: userData.username이 존재하면 표시, 아니면 email 그대로 */}
+          {/* Show the username only when the author name can be fetched */}
           {authorName ? (
             <p className="text-sm text-gray-500 mb-2">By {authorName}</p>
           ) : (

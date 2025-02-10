@@ -1,6 +1,11 @@
+/**
+ * Post Page
+ * TODO: Show the list of posts
+ */
+
 import MyNavbar from '@/components/ui/MyNavbar';
 
-export default function PostsPage() {
+export default function PostPage() {
   return (
     <div>
       <MyNavbar />

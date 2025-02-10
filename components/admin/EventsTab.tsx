@@ -1,3 +1,8 @@
+/**
+ * EventsTab Component
+ * Show the list of events and allow admin to add, edit, and delete events
+ */
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -51,6 +56,7 @@ export default function EventsTab() {
   const [dateError, setDateError] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
 
+  // Fetch all events from the database
   useEffect(() => {
     const fetchEvents = async () => {
       const querySnapshot = await getDocs(collection(db, 'events'));
@@ -70,6 +76,7 @@ export default function EventsTab() {
     setNewEvent((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // If the upload is successful, add the image URL to the thumbnails array
   const handleUploadSuccess: CldUploadWidgetProps['onSuccess'] = (result) => {
     if (
       result.event === 'success' &&
@@ -96,7 +103,7 @@ export default function EventsTab() {
       return;
     }
 
-    // 입력값 검증
+    // Validate the form
     if (!newEvent.title.trim()) {
       alert('⚠️ Please enter an event title.');
       return;
@@ -106,7 +113,7 @@ export default function EventsTab() {
       return;
     }
 
-    // 날짜 검증 (Start_date >= End_date 방지)
+    // Validate if the end date is later than the start date
     const startMillis = newEvent.start_date.toDate().getTime();
     const endMillis = newEvent.end_date.toDate().getTime();
     if (startMillis >= endMillis) {
@@ -123,7 +130,7 @@ export default function EventsTab() {
     };
 
     if (editEventId) {
-      // 문서 업데이트
+      // Update an existing document
       const eventRef = doc(db, 'events', editEventId);
       await updateDoc(eventRef, eventData);
       setEvents((prev) =>
@@ -133,22 +140,21 @@ export default function EventsTab() {
       );
       setEditEventId(null);
     } else {
-      // 새 문서 생성
+      // Create a new document
       const docRef = await addDoc(collection(db, 'events'), {
         ...eventData,
         createdAt: serverTimestamp(),
       });
 
-      // ====> 생성된 문서 ID를 문서 필드에 추가
+      // Update the document with the generated ID
       await updateDoc(docRef, { id: docRef.id });
 
-      // 로컬 상태에서도 새로 추가
+      // Add the new event to the local state
       const createdAt = Timestamp.now();
       setEvents([
         ...events,
         {
-          id: docRef.id, // 로컬에서 사용하는 식별자
-          // docId: docRef.id,     // 필요하다면 필드명은 docId 등 원하는대로
+          id: docRef.id, // identifier for the document
           createdAt,
           ...eventData,
         },
@@ -194,6 +200,9 @@ export default function EventsTab() {
     setNewEvent((prev) => ({ ...prev, [field]: timestamp }));
   };
 
+  // US-EN date format: MMM DD, YYYY HH:MM AM/PM (e.g. Jan 01, 2022 12:00 PM)
+  // I personally prefer an international date format (YYYY-MM-DD HH:MM) but I am studying at a US university LOL
+  // It's so lucky that I don't need to use Ferenheit and Miles in this project AHAHAHA
   const formatDateTimeForDisplay = (timestamp: Timestamp) => {
     return timestamp.toDate().toLocaleDateString('en-US', {
       month: 'short',

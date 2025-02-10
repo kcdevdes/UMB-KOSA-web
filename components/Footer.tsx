@@ -1,3 +1,8 @@
+/**
+ * Footer component
+ * Wash your feet before you go to bed :)
+ */
+
 export default function Footer() {
   return (
     <footer className="bg-white ">

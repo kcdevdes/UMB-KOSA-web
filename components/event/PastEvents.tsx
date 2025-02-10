@@ -22,20 +22,20 @@ interface UserData {
 export default function PastEvents({ allEvents }: PastEventsProps) {
   const now = new Date();
 
-  // 이미 지나간 이벤트만 필터링, end_date 최신순 정렬
+  // Sort past events by end_date in descending order
   const past = allEvents
     .filter((event) => event.end_date.toDate() < now)
     .sort(
       (a, b) => b.end_date.toDate().getTime() - a.end_date.toDate().getTime()
     );
 
-  // 날짜 포맷 함수
+  // format date and time
   const formatDateTime = (timestamp: Event['end_date']) => {
     const date = timestamp.toDate();
     return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
   };
 
-  // 긴 텍스트를 100자로 축약
+  // truncate text
   function truncateText(text: string, maxLength: number) {
     if (text.length <= maxLength) {
       return text;
@@ -43,19 +43,19 @@ export default function PastEvents({ allEvents }: PastEventsProps) {
     return text.slice(0, maxLength) + '...';
   }
 
-  // email -> username 매핑 상태
+  // email-user mapping
   const [emailToUsername, setEmailToUsername] = useState<
     Record<string, string>
   >({});
 
-  // 과거 이벤트의 작성자 이메일을 한 번에 가져와 username 조회
+  // fetch usernames
   useEffect(() => {
     const fetchUsernames = async () => {
       const uniqueEmails = Array.from(
         new Set(past.map((ev) => ev.author).filter(Boolean))
       );
 
-      // 최대 10명까지 가능
+      // fetch usernames for unique emails (up to 10 people due to performance issue)
       if (uniqueEmails.length > 0 && uniqueEmails.length <= 10) {
         const usersRef = collection(db, 'users');
         const q = query(usersRef, where('email', 'in', uniqueEmails));
@@ -96,7 +96,7 @@ export default function PastEvents({ allEvents }: PastEventsProps) {
   return (
     <div className="flex flex-col space-y-8 p-16">
       {past.map((event) => {
-        // email -> username 매핑이 있으면 username, 없으면 이메일 그대로
+        // display username if available
         const displayedName = emailToUsername[event.author] || event.author;
 
         return (
@@ -117,7 +117,6 @@ export default function PastEvents({ allEvents }: PastEventsProps) {
                 bg-korean-white
               "
             >
-              {/* 이미지 영역 */}
               <Image
                 src={event.thumbnails?.[0] || '/images/no-image.jpg'}
                 alt={event.title}
@@ -130,7 +129,6 @@ export default function PastEvents({ allEvents }: PastEventsProps) {
                   rounded-2xl
                 "
               />
-              {/* 텍스트 영역 */}
               <div className="p-4">
                 <h2 className="text-xl text-gray-700 font-bold">
                   {event.title}

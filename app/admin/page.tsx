@@ -1,3 +1,8 @@
+/**
+ * Admin Dashboard Page
+ * Allow users who have admin role in the database, managing members, events, posts, and contact messages
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -16,9 +21,9 @@ export default function AdminPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (authLoading) return; // authLoading이 끝날 때까지 실행 방지
+    if (authLoading) return; // prevent loading until auth process is done
     if (userInfo?.role !== 'admin') {
-      router.replace('/'); // push 대신 replace 사용 (뒤로 가기 방지)
+      router.replace('/'); // prevent accessing to admin page
     }
   }, [authLoading, userInfo, router]);
 

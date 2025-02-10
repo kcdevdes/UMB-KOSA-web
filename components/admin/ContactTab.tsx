@@ -1,3 +1,8 @@
+/**
+ * ContactTab component
+ * Render the list of contact messages
+ */
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -15,6 +20,7 @@ interface Contact {
 export default function ContactTab() {
   const [contacts, setContacts] = useState<Contact[]>([]);
 
+  // Fetch all contacts
   useEffect(() => {
     const fetchContacts = async () => {
       const querySnapshot = await getDocs(collection(db, 'contacts'));
@@ -28,11 +34,13 @@ export default function ContactTab() {
     fetchContacts();
   }, []);
 
+  // Delete a contact
   const deleteContact = async (id: string) => {
     await deleteDoc(doc(db, 'contacts', id));
     setContacts(contacts.filter((c) => c.id !== id));
   };
 
+  // Render the list of contacts
   return (
     <div>
       <h2 className="text-xl font-semibold mb-3">Contact Messages</h2>

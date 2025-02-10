@@ -1,3 +1,9 @@
+/**
+ * MembersTab component
+ *
+ * Render the list of members and provide the ability to promote/demote members
+ */
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -29,12 +35,15 @@ export default function MembersTab() {
     fetchMembers();
   }, []);
 
+  // Promote a member to admin
   const promoteToAdmin = async (id: string) => {
     await updateDoc(doc(db, 'users', id), { role: 'admin' });
 
     setMembers(members.map((m) => (m.id === id ? { ...m, role: 'admin' } : m)));
   };
 
+  // Demote an admin to member
+  // If you try to demote yourself, show an alert (You cannot demote yourself to Member)
   const demoteToUser = async (id: string) => {
     if (user && user.uid !== id) {
       await updateDoc(doc(db, 'users', id), { role: 'member' });

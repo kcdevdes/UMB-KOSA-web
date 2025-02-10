@@ -1,3 +1,7 @@
+/**
+ * This file is a PostsTab component for admin page.
+ */
+
 'use client';
 
 import { useEffect, useState } from 'react';

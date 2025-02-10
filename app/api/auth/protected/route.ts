@@ -12,7 +12,7 @@ export const GET = async () => {
       );
     }
 
-    // Firebase Emulator 환경 확인
+    // Fire Emualtor
     const isEmulator = process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true';
 
     const decodedToken = isEmulator

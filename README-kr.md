@@ -20,6 +20,44 @@ KOSA는 UMass Boston에서 한국 학생들과 한국 문화에 관심 있는 �
 - **활동 기록**: 과거 이벤트와 주요 활동들을 살펴보세요.
 - **커뮤니티 참여**: 학생 생활에 참여하고 소통할 기회를 제공합니다.
 
+## 🔧 Setup Instructions
+
+`Firebase Emulator`가 필요합니다! Fireabase의 실제 서버에선 Read/Write 횟수가 정해져 있습니다. 최대한 에뮬레이터를 활용해주세요.
+`.env.local`도 필요합니다. Key값이 필요하면 연락해주세요. 아니면 자신의 프로젝트를 만들어도 괜찮습니다.
+
+```plain
+# CLIENT FIREBASE #
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+
+# FIREBASE ADMIN #
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_PRIVATE_KEY=
+
+NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true # NOT IN PRODUCTION MODE!
+
+# CLOUDINARY #
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+```
+
+모든 게 준비되었으면 다음 명령을 입력해주세요.
+
+```bash
+git clone https://github.com/kcdevdes/UMB-KOSA-web.git
+cd UMB-KOSA-web
+npm install
+npm run dev
+```
+
 ## 🤝 기여 방법
 
 회원과 자원봉사자의 기여를 환영합니다!  
