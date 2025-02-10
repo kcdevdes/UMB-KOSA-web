@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { db } from '@/lib/firebase/firebase';
+import { db, auth } from '@/lib/firebase/firebase';
 import {
   collection,
   getDocs,
@@ -19,7 +19,6 @@ import {
 } from 'next-cloudinary';
 import { Button, Modal, Table, TextInput, Textarea } from 'flowbite-react';
 import Image from 'next/image';
-import { auth } from '@/lib/firebase/firebase';
 
 interface Event {
   id: string;
@@ -37,7 +36,7 @@ interface Event {
 export default function EventsTab() {
   const [events, setEvents] = useState<Event[]>([]);
   const [newEvent, setNewEvent] = useState<
-    Omit<Event, 'id' | 'writer' | 'createdAt' | 'updatedAt'>
+    Omit<Event, 'id' | 'createdAt' | 'updatedAt'>
   >({
     title: '',
     location: '',
@@ -55,12 +54,12 @@ export default function EventsTab() {
   useEffect(() => {
     const fetchEvents = async () => {
       const querySnapshot = await getDocs(collection(db, 'events'));
-      setEvents(
-        querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Event[]
-      );
+      const eventsData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Event[];
+
+      setEvents(eventsData);
     };
     fetchEvents();
   }, []);
@@ -81,7 +80,7 @@ export default function EventsTab() {
 
       setNewEvent((prev) => {
         if (prev.thumbnails.length >= 3) {
-          setImageError(true); // Set error flag
+          setImageError(true);
           return prev;
         }
         return { ...prev, thumbnails: [...prev.thumbnails, info.secure_url] };
@@ -102,54 +101,56 @@ export default function EventsTab() {
       alert('⚠️ Please enter an event title.');
       return;
     }
-
     if (!newEvent.location.trim()) {
       alert('⚠️ Please enter an event location.');
       return;
     }
 
-    // 날짜 검증 (Start_date가 End_date보다 늦으면 안됨)
+    // 날짜 검증 (Start_date >= End_date 방지)
     const startMillis = newEvent.start_date.toDate().getTime();
     const endMillis = newEvent.end_date.toDate().getTime();
-
     if (startMillis >= endMillis) {
       alert('⚠️ End date & time must be later than Start date & time.');
       return;
     }
 
-    // 이벤트 데이터 준비
     const eventData = {
       ...newEvent,
       start_date: Timestamp.fromDate(newEvent.start_date.toDate()),
       end_date: Timestamp.fromDate(newEvent.end_date.toDate()),
       updatedAt: Timestamp.now(),
-      author: currentUser.email, // 현재 로그인된 사용자의 이메일 저장
+      author: currentUser.email || 'Unknown',
     };
 
     if (editEventId) {
+      // 문서 업데이트
       const eventRef = doc(db, 'events', editEventId);
       await updateDoc(eventRef, eventData);
       setEvents((prev) =>
         prev.map((event) =>
-          event.id === editEventId
-            ? { ...event, ...eventData, author: eventData.author || '' }
-            : event
+          event.id === editEventId ? { ...event, ...eventData } : event
         )
       );
       setEditEventId(null);
     } else {
+      // 새 문서 생성
       const docRef = await addDoc(collection(db, 'events'), {
         ...eventData,
         createdAt: serverTimestamp(),
       });
+
+      // ====> 생성된 문서 ID를 문서 필드에 추가
+      await updateDoc(docRef, { id: docRef.id });
+
+      // 로컬 상태에서도 새로 추가
       const createdAt = Timestamp.now();
       setEvents([
         ...events,
         {
-          id: docRef.id,
+          id: docRef.id, // 로컬에서 사용하는 식별자
+          // docId: docRef.id,     // 필요하다면 필드명은 docId 등 원하는대로
           createdAt,
           ...eventData,
-          author: currentUser.email || 'Unknown',
         },
       ]);
     }
@@ -159,7 +160,7 @@ export default function EventsTab() {
 
   const deleteEvent = async (id: string) => {
     await deleteDoc(doc(db, 'events', id));
-    setEvents(events.filter((event) => event.id !== id));
+    setEvents((prev) => prev.filter((event) => event.id !== id));
   };
 
   const resetForm = () => {
@@ -185,18 +186,12 @@ export default function EventsTab() {
     e: React.ChangeEvent<HTMLInputElement>,
     field: 'start_date' | 'end_date'
   ) => {
-    const inputDate = new Date(e.target.value); // User input date
-    const localOffset = inputDate.getTimezoneOffset(); // Get timezone offset
-    const adjustedDate = new Date(inputDate.getTime() - localOffset * 60000); // Adjust for local time
-
-    // Convert to Firestore Timestamp
+    const inputDate = new Date(e.target.value);
+    const localOffset = inputDate.getTimezoneOffset();
+    const adjustedDate = new Date(inputDate.getTime() - localOffset * 60000);
     const timestamp = Timestamp.fromDate(adjustedDate);
 
-    setNewEvent((prev) => {
-      const updatedEvent = { ...prev, [field]: timestamp };
-
-      return updatedEvent;
-    });
+    setNewEvent((prev) => ({ ...prev, [field]: timestamp }));
   };
 
   const formatDateTimeForDisplay = (timestamp: Timestamp) => {
@@ -206,7 +201,7 @@ export default function EventsTab() {
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
-      hour12: true, // AM/PM 형식
+      hour12: true,
     });
   };
 
@@ -239,7 +234,6 @@ export default function EventsTab() {
           <Table.HeadCell>Images</Table.HeadCell>
           <Table.HeadCell>Actions</Table.HeadCell>
         </Table.Head>
-
         <Table.Body className="divide-y">
           {events.map((event) => (
             <tr key={event.id}>
@@ -253,7 +247,7 @@ export default function EventsTab() {
               </Table.Cell>
               <Table.Cell>{event.author || 'Unknown'}</Table.Cell>
               <Table.Cell>
-                {event.thumbnails.map((img, idx) => (
+                {event.thumbnails?.map((img, idx) => (
                   <Image
                     key={idx}
                     src={img}
@@ -353,7 +347,6 @@ export default function EventsTab() {
               className="mt-2"
             />
           ))}
-
           {imageError && (
             <p className="text-red-500">
               ⚠️ You can upload up to 3 images only.

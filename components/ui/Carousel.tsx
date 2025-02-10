@@ -12,7 +12,7 @@ export default function Carousel({ images }: CarouselProps): JSX.Element {
     AutoScroll({
       speed: 2,
       startDelay: 0,
-      direction: 'backward',
+      direction: 'forward',
       stopOnInteraction: false,
     }),
   ]);

@@ -6,7 +6,7 @@ import MembersTab from '@/components/admin/MembersTab';
 import EventsTab from '@/components/admin/EventsTab';
 import PostsTab from '@/components/admin/PostsTab';
 import ContactTab from '@/components/admin/ContactTab';
-import { useAuth } from '@/lib/hooks/useAuth';
+import { useAuth } from '@/lib/hook/useAuth';
 
 const TABS = ['Members', 'Events', 'Posts', 'Contact'];
 

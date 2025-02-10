@@ -57,9 +57,8 @@ const members = [
 export default function MemberProfile() {
   return (
     <div className="w-full px-4 py-10 text-center bg-korean-blue">
-      <h1 className="text-4xl font-bold mb-10">
-        Meet Our <span className="text-korean-blue font-bold">KO</span>
-        <span className="text-korean-red font-bold">SA</span> Members
+      <h1 className="ml-3 text-4xl font-bold mb-10 text-korean-white text-left">
+        Meet Our KOSA Members
       </h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
         {members.map((member) => (

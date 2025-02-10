@@ -20,7 +20,7 @@ export default function MiniAlbum() {
             Our Memories
           </p>
         </div>
-        <div className="mt-16 mb-16">
+        <div className="mt-16">
           <Carousel images={images} />
         </div>
       </div>

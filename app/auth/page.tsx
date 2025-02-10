@@ -2,7 +2,7 @@
 
 import LoginForm from '@/components/LoginForm';
 import MyNavbar from '@/components/ui/MyNavbar';
-import { useAuth } from '@/lib/hooks/useAuth';
+import { useAuth } from '@/lib/hook/useAuth';
 import { useRouter } from 'next/navigation';
 import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
 import { Button } from 'flowbite-react';

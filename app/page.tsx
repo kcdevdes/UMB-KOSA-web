@@ -15,7 +15,6 @@ export default function WelcomePage() {
       <Hero />
       <AboutUs />
       <MiniAlbum />
-      <ContactUs />
       <Footer />
     </div>
   );

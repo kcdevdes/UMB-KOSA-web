@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Navbar } from 'flowbite-react';
-import { useAuth } from '@/lib/hooks/useAuth';
+import { useAuth } from '@/lib/hook/useAuth';
 import Image from 'next/image';
 
 export default function MyNavbar() {
@@ -24,14 +24,14 @@ export default function MyNavbar() {
       <div className="flex md:order-2">
         {user ? (
           <Link
-            className="bg-korean-red text-white p-3 rounded-full"
+            className="bg-korean-blue text-white py-2 px-3 rounded-full"
             href="/profile"
           >
             Profile
           </Link>
         ) : (
           <Link
-            className="bg-korean-red text-white p-3 rounded-full"
+            className="bg-korean-blue text-white py-2 px-3 rounded-full"
             href="/auth"
           >
             Sign In

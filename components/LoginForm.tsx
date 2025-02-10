@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { sendSignInLinkToEmail } from 'firebase/auth';
 import { auth } from '@/lib/firebase/firebase';
-import { useAuth } from '@/lib/hooks/useAuth';
+import { useAuth } from '@/lib/hook/useAuth';
 import { TextInput, Label, Button, Alert } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 

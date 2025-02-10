@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/lib/hooks/useAuth'; // user, logout, authLoading 등을 제공
+import { useAuth } from '@/lib/hook/useAuth'; // user, logout, authLoading 등을 제공
 import { db } from '@/lib/firebase/firebase'; // Firestore 인스턴스
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Button, Label, TextInput, Spinner } from 'flowbite-react';
