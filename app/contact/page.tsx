@@ -4,6 +4,7 @@
  */
 
 import ContactUs from '@/components/ContactUs';
+import Footer from '@/components/Footer';
 import MyNavbar from '@/components/ui/MyNavbar';
 
 export default function ContactPage() {
@@ -11,6 +12,7 @@ export default function ContactPage() {
     <div className="w-full h-screen">
       <MyNavbar />
       <ContactUs />
+      <Footer />
     </div>
   );
 }
