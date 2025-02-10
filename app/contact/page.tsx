@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import ContactUs from '@/components/ContactUs';
 import MyNavbar from '@/components/ui/MyNavbar';
 
