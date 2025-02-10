@@ -1,3 +1,8 @@
+/**
+ * Event Page
+ * Show the list of upcoming and past events
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -37,7 +42,7 @@ export default function EventPage() {
     <div>
       <MyNavbar />
       <div className="pt-24 w-full h-auto flex flex-col items-center bg-gray-100">
-        {/* 탭 메뉴 */}
+        {/* Tab menu */}
         <div className="flex">
           <button
             className={`w-40 py-2 rounded-l-lg ${
@@ -57,7 +62,8 @@ export default function EventPage() {
           </button>
         </div>
 
-        {/* 로딩 상태 혹은 탭 선택에 따라 이벤트 컴포넌트 렌더링 */}
+        {/* If the 'upcoming' tab button is pressed, show UpcomingEvents componet.
+        Otherwise, show PastEvents component. */}
         {loading ? (
           <p className="font-bold text-gray-500 text-center">
             Hang tight! Our carrier pigeon is delivering your events...🕊️🕊️

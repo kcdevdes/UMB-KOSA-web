@@ -1,3 +1,14 @@
+/**
+ * Firebase Authentication Hook
+ * This hook provides the following features:
+ * - Detect authentication state changes
+ * - Save new user info to Firestore (executed after email link login)
+ * - Save Firebase Auth token and then store user info in Firestore
+ * - Logout
+ *
+ * Very useful for handling user authentication and authorization
+ */
+
 import {
   useEffect,
   useState,

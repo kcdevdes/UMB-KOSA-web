@@ -1,3 +1,8 @@
+/**
+ * Main page of the application
+ * Show the main content of the application
+ */
+
 'use client';
 
 import AboutUs from '@/components/AboutUs';

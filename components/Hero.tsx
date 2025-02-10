@@ -1,3 +1,9 @@
+/**
+ * Hero Component
+ * Hero means the first thing that the user sees when they visit the website
+ * not the main character in the movie
+ */
+
 'use client';
 
 export default function Hero() {

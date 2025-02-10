@@ -1,3 +1,8 @@
+/**
+ * Contact Page
+ * Allow users to send a message to the admin
+ */
+
 import ContactUs from '@/components/ContactUs';
 import MyNavbar from '@/components/ui/MyNavbar';
 

@@ -1,3 +1,8 @@
+/**
+ * Profile page
+ * Show the user profile
+ */
+
 'use client';
 
 import UserProfile from '@/components/UserProfile';

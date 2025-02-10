@@ -1,3 +1,8 @@
+/**
+ * About Page
+ * Show the information about the team members, and Social Media
+ */
+
 import Footer from '@/components/Footer';
 import MemberProfile from '@/components/MemberProfile';
 import Reference from '@/components/Reference';

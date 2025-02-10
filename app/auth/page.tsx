@@ -1,3 +1,8 @@
+/**
+ * Auth Page
+ * Allow users to sign in with email link (ONLY @umb.edu domain can sign in)
+ */
+
 'use client';
 
 import LoginForm from '@/components/LoginForm';
