@@ -184,20 +184,22 @@ export default function EventsTab() {
     setImageError(false);
   };
 
-  const formatDateTimeForInput = (timestamp: Timestamp) => {
-    return timestamp.toDate().toISOString().slice(0, 16);
-  };
-
   const handleDateTimeChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     field: 'start_date' | 'end_date'
   ) => {
     const inputDate = new Date(e.target.value);
-    const localOffset = inputDate.getTimezoneOffset();
-    const adjustedDate = new Date(inputDate.getTime() - localOffset * 60000);
-    const timestamp = Timestamp.fromDate(adjustedDate);
+    const timestamp = Timestamp.fromDate(inputDate);
 
     setNewEvent((prev) => ({ ...prev, [field]: timestamp }));
+  };
+
+  // Fix time conversion issue for UI
+  const formatDateTimeForInput = (timestamp: Timestamp) => {
+    const date = timestamp.toDate();
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 16);
   };
 
   // US-EN date format: MMM DD, YYYY HH:MM AM/PM (e.g. Jan 01, 2022 12:00 PM)

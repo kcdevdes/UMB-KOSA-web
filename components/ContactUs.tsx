@@ -1,15 +1,12 @@
-/**
- * This file is the contact us page for the website. It contains a form that allows users to send an email to the KOSA team.
- */
-
 'use client';
 
 import { useState } from 'react';
 import React from 'react';
+import { db } from '@/lib/firebase/firebase';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     message: '',
   });
@@ -24,59 +21,39 @@ export default function ContactUs() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@umb\.edu$/;
-    if (!emailRegex.test(formData.email)) {
-      setStatus('Only @umb.edu email addresses are allowed.');
+    if (!formData.email) {
+      setStatus('You need to enter your email address');
       return;
     }
 
     setStatus('Sending...');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      await addDoc(collection(db, 'contacts'), {
+        sender: formData.email,
+        message: formData.message,
+        reply: '',
+        sentAt: Timestamp.fromDate(new Date()),
+        isAnswered: false,
       });
 
-      if (response.ok) {
-        setStatus('Email sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        setStatus('Failed to send email.');
-      }
-    } catch {
+      setStatus('Message sent successfully!');
+      setFormData({ email: '', message: '' });
+    } catch (error) {
+      console.error('Error saving message:', error);
       setStatus('An error occurred. Please try again.');
     }
   };
 
   return (
-    <div className="bg-gray-100 mt-[40px] h-auto flex flex-col justify-center">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 items-center py-12 ">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <p className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-right">
-            Need to contact? KOSA&apos;s ears are always open!
-          </p>
-        </div>
-        <div className="font-thin text-lg lg:text-xl text-gray-500 mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl lg:text-center lindent-4">
-          If you have any questions, or want to join KOSA, feel free to reach
-          out. <br></br> 한국인분들은 언제나 환영해요! 꼭 연락주세요!
-        </div>
-        <div className="max-w-full p-4 mt-12 bg-white rounded-xl shadow-lg">
+    <div className="bg-gray-100 h-auto flex flex-col justify-center">
+      <div className="mx-auto max-w-7xl lg:px-8 items-center ">
+        <div className="max-w-full p-4 bg-white rounded-xl shadow-lg">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border rounded-lg"
-            />
             <input
               type="email"
               name="email"
-              placeholder="Your UMB Email"
+              placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
               required
@@ -84,7 +61,7 @@ export default function ContactUs() {
             />
             <textarea
               name="message"
-              placeholder="Your Message"
+              placeholder="Your Message (English/Korean are both welcome)"
               value={formData.message}
               onChange={handleChange}
               required
@@ -94,7 +71,7 @@ export default function ContactUs() {
               type="submit"
               className="w-full rounded-full text-white p-3 bg-korean-red hover:bg-red-800"
             >
-              Send Carrier Pigeon!
+              Send Carrier Pigeons!
             </button>
           </form>
           {status && <p className="text-center mt-4 text-gray-600">{status}</p>}
