@@ -41,38 +41,53 @@ export default function EventPage() {
   return (
     <div>
       <MyNavbar />
-      <div className="pt-24 w-full h-auto flex flex-col items-center bg-gray-100">
-        {/* Tab menu */}
-        <div className="flex">
-          <button
-            className={`w-40 py-2 rounded-l-lg ${
-              tab === 'upcoming' ? 'bg-korean-blue text-white' : 'bg-gray-200'
-            }`}
-            onClick={() => setTab('upcoming')}
-          >
-            Upcoming
-          </button>
-          <button
-            className={`w-40 py-2 rounded-r-lg ${
-              tab === 'past' ? 'bg-korean-blue text-white' : 'bg-gray-200'
-            }`}
-            onClick={() => setTab('past')}
-          >
-            Past
-          </button>
-        </div>
+      <div className="bg-gray-100 pt-24 sm:pt-32 ">
+        <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 ">
+          <div className="max-w-xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl">
+              See What&apos;s Coming Next
+            </h2>
+            <p className="mt-6 text-lg/8 text-black">
+              We look forward to meeting you at our events with a warm welcome.
+              Don&apos;t hesitate to join events!
+            </p>
+          </div>
+          <div className=" w-full h-auto flex flex-col items-center bg-gray-100">
+            {/* Tab menu */}
+            <div className="flex">
+              <button
+                className={`w-40 py-2 rounded-l-lg ${
+                  tab === 'upcoming'
+                    ? 'bg-korean-blue text-white'
+                    : 'bg-gray-200'
+                }`}
+                onClick={() => setTab('upcoming')}
+              >
+                Upcoming
+              </button>
+              <button
+                className={`w-40 py-2 rounded-r-lg ${
+                  tab === 'past' ? 'bg-korean-blue text-white' : 'bg-gray-200'
+                }`}
+                onClick={() => setTab('past')}
+              >
+                Past
+              </button>
+            </div>
 
-        {/* If the 'upcoming' tab button is pressed, show UpcomingEvents componet.
+            {/* If the 'upcoming' tab button is pressed, show UpcomingEvents componet.
         Otherwise, show PastEvents component. */}
-        {loading ? (
-          <p className="font-bold text-gray-500 text-center">
-            Hang tight! Our carrier pigeon is delivering your events...🕊️🕊️
-          </p>
-        ) : tab === 'upcoming' ? (
-          <UpcomingEvents allEvents={allEvents} />
-        ) : (
-          <PastEvents allEvents={allEvents} />
-        )}
+            {loading ? (
+              <p className="font-bold text-gray-500 text-center">
+                Hang tight! Our carrier pigeon is delivering your events...🕊️🕊️
+              </p>
+            ) : tab === 'upcoming' ? (
+              <UpcomingEvents allEvents={allEvents} />
+            ) : (
+              <PastEvents allEvents={allEvents} />
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
