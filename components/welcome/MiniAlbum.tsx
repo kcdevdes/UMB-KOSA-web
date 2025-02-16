@@ -17,7 +17,7 @@ export default function MiniAlbum() {
   ];
 
   return (
-    <div className="bg-korean-white h-[50vh] flex flex-col justify-center">
+    <div className="bg-korean-white h-[80vh] flex flex-col justify-center">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 items-center">
         <div className="mx-auto max-w-2xl lg:text-center">
           <p className="mb-2 pt-16 text-4xl font-semibold tracking-tight text-pretty text-black sm:text-5xl lg:text-balance">
