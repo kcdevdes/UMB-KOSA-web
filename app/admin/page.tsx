@@ -12,6 +12,7 @@ import EventsTab from '@/components/admin/EventsTab';
 import PostsTab from '@/components/admin/PostsTab';
 import ContactTab from '@/components/admin/ContactTab';
 import { useAuth } from '@/lib/hook/useAuth';
+import Link from 'next/link';
 
 const TABS = ['Members', 'Events', 'Posts', 'Contact'];
 
@@ -32,8 +33,18 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+    <div className="p-10">
+      <div className="flex flex-row">
+        <h1 className="text-2xl font-bold justify-center items-center">
+          Admin Dashboard
+        </h1>
+        <Link
+          href={'/'}
+          className="ml-10 bg-korean-red text-white rounded-full px-3 py-2"
+        >
+          Home
+        </Link>
+      </div>
 
       {/* Tabs Navigation */}
       <div className="flex space-x-4 border-b pb-2 mb-4">

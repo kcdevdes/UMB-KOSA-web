@@ -10,7 +10,7 @@ export default function MyNavbar() {
   return (
     <Navbar
       fluid
-      className="fixed z-50 *:overflow-hidden top-0 w-full shadow-lg bg-[#FAF6F5]"
+      className="fixed z-40 *:overflow-hidden top-0 w-full shadow-lg bg-[#FAF6F5]"
     >
       <Navbar.Brand as={Link} href="/" className="flex items-center">
         <Image
