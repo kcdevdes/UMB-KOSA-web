@@ -28,7 +28,7 @@ export default function Reference() {
     <div className="bg-gray-100 py-24 sm:py-32 ">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
             Meet Our Social Media
           </h2>
           <p className="mt-6 text-lg/8 text-black">

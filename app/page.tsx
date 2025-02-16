@@ -5,11 +5,14 @@
 
 'use client';
 
-import AboutUs from '@/components/AboutUs';
-import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
-import MiniAlbum from '@/components/MiniAlbum';
+import AboutUs from '@/components/welcome/AboutUs';
+import SimpleStat from '@/components/welcome/SimpleStat';
+import Footer from '@/components/ui/Footer';
+import Hero from '@/components/welcome/Hero';
+import MiniAlbum from '@/components/welcome/MiniAlbum';
 import MyNavbar from '@/components/ui/MyNavbar';
+import MemberInterview from '@/components/welcome/MemberInterview';
+import Alias from '@/components/welcome/Alias';
 
 export default function WelcomePage() {
   return (
@@ -17,7 +20,10 @@ export default function WelcomePage() {
       <MyNavbar />
       <Hero />
       <AboutUs />
+      <SimpleStat />
       <MiniAlbum />
+      <MemberInterview />
+      <Alias />
       <Footer />
     </div>
   );

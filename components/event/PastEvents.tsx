@@ -78,7 +78,7 @@ export default function PastEvents({ allEvents }: PastEventsProps) {
   if (past.length === 0) {
     return (
       <div className="w-full flex flex-col items-center justify-center p-16">
-        <p className="text-2xl font-bold text-gray-500 text-center">
+        <p className="text-2xl text-gray-500 text-center">
           There is no <span className="text-korean-blue">past</span> event yet!
           Follow{' '}
           <Link
@@ -127,6 +127,7 @@ export default function PastEvents({ allEvents }: PastEventsProps) {
                   h-48
                   object-cover
                   rounded-2xl
+                  opacity-50
                 "
               />
               <div className="p-4">

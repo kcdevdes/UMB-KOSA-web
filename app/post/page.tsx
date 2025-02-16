@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
-import Footer from '@/components/Footer';
+import Footer from '@/components/ui/Footer';
 import MyNavbar from '@/components/ui/MyNavbar';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -64,7 +64,7 @@ export default function PostPage() {
       <div className="bg-gray-100 py-24 sm:py-32 ">
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 ">
           <div className="max-w-xl">
-            <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
               Discover Our Past Activities
             </h2>
             <p className="mt-6 text-lg/8 text-black">

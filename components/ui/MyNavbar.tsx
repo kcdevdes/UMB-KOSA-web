@@ -8,7 +8,10 @@ import Image from 'next/image';
 export default function MyNavbar() {
   const { user } = useAuth();
   return (
-    <Navbar fluid className="fixed z-10 overflow-hidden top-0 w-full shadow-lg">
+    <Navbar
+      fluid
+      className="fixed z-50 *:overflow-hidden top-0 w-full shadow-lg bg-[#FAF6F5]"
+    >
       <Navbar.Brand as={Link} href="/" className="flex items-center">
         <Image
           className="rounded-full"
@@ -17,7 +20,7 @@ export default function MyNavbar() {
           height={50}
           alt="Kosa logo"
         />
-        <span className="ml-2 self-center whitespace-nowrap text-1xl font-bold dark:text-white">
+        <span className="ml-2 self-center whitespace-nowrap text-2xl font-Shilla dark:text-white">
           UMass KOSA
         </span>
       </Navbar.Brand>
