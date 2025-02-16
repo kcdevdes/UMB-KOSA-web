@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, Spinner } from 'flowbite-react';
 import Post from '@/lib/entity/Post';
+import { useTranslations } from 'next-intl';
 
 export default function PostPage() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -16,6 +17,7 @@ export default function PostPage() {
   const [emailToUsername, setEmailToUsername] = useState<
     Record<string, string>
   >({});
+  const t = useTranslations('post');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -65,12 +67,9 @@ export default function PostPage() {
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 ">
           <div className="max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
-              Discover Our Past Activities
+              {t('title')}
             </h2>
-            <p className="mt-6 text-lg/8 text-black">
-              As a supportive association, we are happy to introduce the
-              activities we have done. Take a look!
-            </p>
+            <p className="mt-6 text-lg/8 text-black">{t('description')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (

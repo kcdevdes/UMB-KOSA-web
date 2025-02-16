@@ -1,26 +1,25 @@
-/**
- * Reference Component
- */
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from './ui/Button';
+import { useTranslations } from 'next-intl';
 
 export default function Reference() {
+  const t = useTranslations('about.reference');
+
   const links = [
     {
       name: 'KOSA',
       role: 'Instagram',
       link: 'https://www.instagram.com/umb_kosa/',
-      imageUrl:
-        'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/308643062_1076838373204387_5369014883573964519_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2AHTgHhPelmZHblAd3voMq6RLtPwP2pXWH9TjIdQA_DDliE14JwUj_iSIzVCsdt8UsLjz0BrDlecS0GHNcsyvPDP&_nc_ohc=9g5wCJ1Xmt8Q7kNvgHIhM0U&_nc_gid=28b7661c708b4a1cae05167e0104f25b&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AYAXQx3Ce67wze8BfIjWmIKOiuEAhUbqPPPDPLFx6dKymQ&oe=67AECE75&_nc_sid=7a9f4b',
+      imageUrl: '/images/kosa-logo.jpg',
     },
     {
       name: 'KOSA',
       role: 'LinkedIn',
       link: '',
-      imageUrl:
-        'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/308643062_1076838373204387_5369014883573964519_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2AHTgHhPelmZHblAd3voMq6RLtPwP2pXWH9TjIdQA_DDliE14JwUj_iSIzVCsdt8UsLjz0BrDlecS0GHNcsyvPDP&_nc_ohc=9g5wCJ1Xmt8Q7kNvgHIhM0U&_nc_gid=28b7661c708b4a1cae05167e0104f25b&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AYAXQx3Ce67wze8BfIjWmIKOiuEAhUbqPPPDPLFx6dKymQ&oe=67AECE75&_nc_sid=7a9f4b',
+      imageUrl: '/images/kosa-logo.jpg',
     },
   ];
 
@@ -29,12 +28,9 @@ export default function Reference() {
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
           <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
-            Meet Our Social Media
+            {t('title')}
           </h2>
-          <p className="mt-6 text-lg/8 text-black">
-            We love connecting with diverse people and will keep you updated
-            with events and news through social media! Stay tuned! ➜
-          </p>
+          <p className="mt-6 text-lg/8 text-black">{t('description')}</p>
         </div>
         <ul
           role="list"

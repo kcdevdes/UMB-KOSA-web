@@ -11,6 +11,53 @@
       "description": "is a vibrant community uniting Korean, Korean-American students, exchange students and anyone with a passion for Korean culture. It’s a place where you can",
       "highlight": "connect with our members and leadership team, discover our past and ongoing activities, and stay informed about upcoming events.",
       "closing": "More than just a student organization, we are dedicated to fostering an inclusive and welcoming space where meaningful connections thrive and unforgettable memories are made."
+    },
+    "stats": {
+      "members": "Members in Association",
+      "events": "# of Events",
+      "dateLocale": "en-US"
+    },
+    "miniAlbum": {
+      "ourMemory": "Our Memories"
+    },
+    "alias": {
+      "about": "Meet Our Members",
+      "forum": "Tell Your Thoughts to Us",
+      "event": "Find New Events",
+      "post": "Discover Our Past Activity",
+      "contact": "Need to Contact Us?"
     }
+  },
+  "about": {
+    "reference": {
+      "title": "Meet Our Social Media",
+      "description": "We love connecting with diverse people and will keep you updated with events and news through social media"
+    },
+    "memberProfile": {
+      "title": "Meet Our ",
+      "kosaKo": "KO",
+      "kosaSa": "SA",
+      "titleEnd": " Members"
+    }
+  },
+  "event": {
+    "title": "See What's Coming Next",
+    "description": "The best way to support KOSA is by joining our events. Check out what's coming next.",
+    "upcoming": "upcoming",
+    "past": "past",
+    "noEvent": "There is no upcoming event yet! Follow KOSA Instagram for up-to-date information",
+    "loading": "Hang tight... Our carrier pigeon is delivering your events...🕊️🕊️"
+  },
+  "post": {
+    "title": "Discover Our Past Activities",
+    "description": "As a supportive association, we are happy to introduce the activities we have done. Take a look.",
+    "loading": "Hang tight... Our carrier pigeon is delivering your events...🕊️🕊️"
+  },
+  "contact": {
+    "title": "Need to Contact Us?",
+    "description": "KOSA's ears are always open! Please reach out to us with your messages.",
+    "emailPlaceHolder": "Your Email",
+    "messagePlaceHolder": "Your Message (Kor/Eng are both welcome)",
+    "buttonText": "Send Carrier Pigons 🕊️🕊️"
   }
 }

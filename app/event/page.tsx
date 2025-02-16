@@ -9,11 +9,13 @@ import Event from '@/lib/entity/Event';
 import UpcomingEvents from '@/components/event/UpcomingEvents';
 import PastEvents from '@/components/event/PastEvents';
 import Footer from '@/components/ui/Footer';
+import { useTranslations } from 'next-intl';
 
 export default function EventPage() {
   const [allEvents, setAllEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'upcoming' | 'past'>('upcoming');
+  const t = useTranslations('event');
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -40,12 +42,9 @@ export default function EventPage() {
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
-              See What&apos;s Coming Next
+              {t('title')}
             </h2>
-            <p className="text-lg/8 text-black">
-              The best way to support KOSA is by joining our events! Check out
-              what&apos;s coming next!
-            </p>
+            <p className="text-lg/8 text-black">{t('description')}</p>
           </div>
         </div>
       </div>
@@ -57,7 +56,7 @@ export default function EventPage() {
             }`}
             onClick={() => setTab('upcoming')}
           >
-            Upcoming
+            {t('upcoming')}
           </button>
           <button
             className={`w-40 py-2 rounded-r-lg ${
@@ -65,15 +64,12 @@ export default function EventPage() {
             }`}
             onClick={() => setTab('past')}
           >
-            Past
+            {t('past')}
           </button>
         </div>
 
-        {/* 로딩 상태 혹은 탭 선택에 따라 이벤트 컴포넌트 렌더링 */}
         {loading ? (
-          <p className="font-bold text-gray-500 text-center">
-            Hang tight! Our carrier pigeon is delivering your events...🕊️🕊️
-          </p>
+          <p className="font-bold text-gray-500 text-center">{t('loading')}</p>
         ) : tab === 'upcoming' ? (
           <UpcomingEvents allEvents={allEvents} />
         ) : (

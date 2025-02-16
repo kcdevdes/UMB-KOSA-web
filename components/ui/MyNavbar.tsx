@@ -74,6 +74,9 @@ export default function MyNavbar() {
         <Navbar.Link as={Link} href="/about" className="hover:!text-korean-red">
           About
         </Navbar.Link>
+        <Navbar.Link as={Link} href="/forum" className="hover:!text-korean-red">
+          Forum
+        </Navbar.Link>
         <Navbar.Link as={Link} href="/event" className="hover:!text-korean-red">
           Event
         </Navbar.Link>

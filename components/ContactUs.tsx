@@ -4,8 +4,10 @@ import { useState } from 'react';
 import React from 'react';
 import { db } from '@/lib/firebase/firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { useTranslations } from 'next-intl';
 
 export default function ContactUs() {
+  const t = useTranslations('contact');
   const [formData, setFormData] = useState({
     email: '',
     message: '',
@@ -53,7 +55,7 @@ export default function ContactUs() {
             <input
               type="email"
               name="email"
-              placeholder="Your Email"
+              placeholder={t('emailPlaceHolder')}
               value={formData.email}
               onChange={handleChange}
               required
@@ -61,7 +63,7 @@ export default function ContactUs() {
             />
             <textarea
               name="message"
-              placeholder="Your Message (English/Korean are both welcome)"
+              placeholder={t('messagePlaceHolder')}
               value={formData.message}
               onChange={handleChange}
               required
@@ -71,7 +73,7 @@ export default function ContactUs() {
               type="submit"
               className="w-full rounded-full text-white p-3 bg-korean-red hover:bg-red-800"
             >
-              Send Carrier Pigeons!
+              {t('buttonText')}
             </button>
           </form>
           {status && <p className="text-center mt-4 text-gray-600">{status}</p>}

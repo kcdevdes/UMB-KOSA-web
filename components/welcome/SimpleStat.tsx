@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase/firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import { useTranslations } from 'next-intl';
 
 export default function SimpleStat() {
   const [membersCount, setMembersCount] = useState(0);
   const [eventsCount, setEventsCount] = useState(0);
   const [animatedMembers, setAnimatedMembers] = useState(0);
   const [animatedEvents, setAnimatedEvents] = useState(0);
+  const t = useTranslations('home.stats');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,19 +57,19 @@ export default function SimpleStat() {
       <div className="flex flex-row items-center">
         <h1 className="text-[10em] text-white">{animatedMembers}</h1>
         <div className="flex flex-col text-gray-100">
-          <h1 className="w-[15vh] text-[2em]">members in association</h1>
+          <h1 className="w-[15vh] text-[2em]">{t('members')}</h1>
           <h1 className="font-thin text-gray-100">
-            {new Intl.DateTimeFormat('en-US').format(new Date())}
+            {new Intl.DateTimeFormat(t('dateLocale')).format(new Date())}
           </h1>
         </div>
       </div>
       <div className="flex flex-row items-center">
         <div className="flex flex-col">
           <h1 className="w-[10vh] text-[2em] text-gray-100 mr-7">
-            # of events
+            {t('events')}
           </h1>
           <h1 className="font-thin text-gray-100">
-            {new Intl.DateTimeFormat('en-US').format(new Date())}
+            {new Intl.DateTimeFormat(t('dateLocale')).format(new Date())}
           </h1>
         </div>
         <h1 className="text-[10em] text-white">{animatedEvents}</h1>

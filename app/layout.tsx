@@ -8,7 +8,31 @@ import path from 'path';
 
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
-  description: 'Hello, KOSA!',
+  description:
+    'UMass Boston Korean Student Association | UMass Boston 한국학생회 공식 홈페이지입니다.',
+  openGraph: {
+    title: 'UMB | KOSA',
+    description:
+      'UMass Boston Korean Student Association | UMass Boston 한국학생회 공식 홈페이지입니다.',
+    url: 'https://umbkosa.org',
+    siteName: 'UMB | KOSA',
+    images: [
+      {
+        url: 'https://umbkosa.org/kosa-logo.jpg',
+        width: 800,
+        height: 800,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'UMB | KOSA',
+    description:
+      'UMass Boston Korean Student Association | UMass Boston 한국학생회 공식 홈페이지입니다.',
+    images: ['https://yourdomain.com/kosa-logo.png'],
+  },
 };
 
 export const viewport: Viewport = {

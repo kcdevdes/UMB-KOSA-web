@@ -1,47 +1,50 @@
 /**
  * MemberProfile
  */
+'use client';
 
 import { Button } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const members = [
-  {
-    name: 'Jongsoo Ha',
-    role: 'President',
-    image: '/images/member-profile/jongsoo_ha.jpg', // Static Image Input
-    bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
-    link: 'https://www.instagram.com/jongsoo1203/',
-  },
-  {
-    name: 'Wonjung Jin',
-    role: 'Vice President',
-    image: '/images/member-profile/wonjung_jin.jpg',
-    bio: 'Wonjung is leading and supporting every individual belonging to KOSA.',
-    link: 'https://www.instagram.com/w0njungj1n/',
-  },
-  {
-    name: 'Wonyong Chung',
-    role: 'Event Planner',
-    image: '/images/member-profile/wonyong_chung.jpg',
-    bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
-    link: 'https://www.instagram.com/w.y_colin_chung/',
-  },
-];
-
 export default function MemberProfile() {
+  const t = useTranslations('about.memberProfile');
+  const members = [
+    {
+      name: 'Jongsoo Ha',
+      role: 'President',
+      image: '/images/member-profile/jongsoo_ha.jpg', // Static Image Input
+      bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
+      link: 'https://www.instagram.com/jongsoo1203/',
+    },
+    {
+      name: 'Wonjung Jin',
+      role: 'Vice President',
+      image: '/images/member-profile/wonjung_jin.jpg',
+      bio: 'Wonjung is leading and supporting every individual belonging to KOSA.',
+      link: 'https://www.instagram.com/w0njungj1n/',
+    },
+    {
+      name: 'Wonyong Chung',
+      role: 'Event Planner',
+      image: '/images/member-profile/wonyong_chung.jpg',
+      bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
+      link: 'https://www.instagram.com/w.y_colin_chung/',
+    },
+  ];
+
   return (
     <div className="bg-korean-blue py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
           <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl font-Shilla">
-            Meet Our{' '}
+            {t('title')}
             <span className="bg-white rounded-full px-3">
-              <span className="text-korean-blue">KO</span>
-              <span className="text-korean-red">SA</span>
-            </span>{' '}
-            Members
+              <span className="text-korean-blue">{t('kosaKo')}</span>
+              <span className="text-korean-red">{t('kosaSa')}</span>
+            </span>
+            {t('titleEnd')}
           </h2>
         </div>
         <ul
