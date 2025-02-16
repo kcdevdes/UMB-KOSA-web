@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { db } from '@/lib/firebase/firebase';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
-import Footer from '@/components/Footer';
+import Footer from '@/components/ui/Footer';
 import MyNavbar from '@/components/ui/MyNavbar';
 import Image from 'next/image';
 import { Spinner } from 'flowbite-react';

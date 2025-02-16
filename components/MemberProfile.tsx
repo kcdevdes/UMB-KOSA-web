@@ -10,16 +10,23 @@ const members = [
   {
     name: 'Jongsoo Ha',
     role: 'President',
-    image: '/images/jongsoo_ha.jpg', // Static Image Input
+    image: '/images/member-profile/jongsoo_ha.jpg', // Static Image Input
     bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
-    link: 'https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/429588136_1483830059148104_7832935325382085583_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2AF_PD7H7GfAT3q4PW0Oj38Ld7ZnUQ9Cv5liBaEEgfLaz_3U563c82PANyWClSpXA7qjU47UYhEyHqKNav7DhWkk&_nc_ohc=QE_KRcgg4GoQ7kNvgEPeZtj&_nc_gid=1454ecacc0c24172be1a1479b390d523&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AYCEKwu4svlnPom1jOjuBnZ_Rvcrwr7jJhM87NvP1a0xGw&oe=67AED756&_nc_sid=7a9f4b',
+    link: 'https://www.instagram.com/jongsoo1203/',
   },
   {
-    name: 'Gibeom Choi',
-    role: 'Web Master',
-    image: '/images/gibeom_choi.png', // Static Image Input
+    name: 'Wonjung Jin',
+    role: 'Vice President',
+    image: '/images/member-profile/wonjung_jin.jpg',
+    bio: 'Wonjung is leading and supporting every individual belonging to KOSA.',
+    link: 'https://www.instagram.com/w0njungj1n/',
+  },
+  {
+    name: 'Wonyong Chung',
+    role: 'Event Planner',
+    image: '/images/member-profile/wonyong_chung.jpg',
     bio: 'Jongsoo is leading UMass KOSA with a passion for community building and student engagement.',
-    link: 'https://www.instagram.com/g_choi001/',
+    link: 'https://www.instagram.com/w.y_colin_chung/',
   },
 ];
 
@@ -28,7 +35,7 @@ export default function MemberProfile() {
     <div className="bg-korean-blue py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl font-Shilla">
             Meet Our{' '}
             <span className="bg-white rounded-full px-3">
               <span className="text-korean-blue">KO</span>
@@ -49,7 +56,7 @@ export default function MemberProfile() {
                   src={member.image}
                   width={60}
                   height={60}
-                  className="size-24 rounded-full shadow-lg"
+                  className="size-24 rounded-full shadow-lg object-cover"
                 />
                 <div>
                   <h3 className="text-base/7 font-semibold tracking-tight text-korean-yellow">

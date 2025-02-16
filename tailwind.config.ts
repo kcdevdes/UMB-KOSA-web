@@ -11,6 +11,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        Shilla: ['Shilla_CultureB-Bold'],
+        Chosun: ['ChosunGs'],
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',

@@ -19,12 +19,18 @@ export default function UpcomingEvents({ allEvents }: UpcomingEventsProps) {
 
   // sort by start_date in ascending order
   const now = new Date();
+  const ongoing = allEvents.filter(
+    (event) =>
+      event.start_date.toDate() <= now && event.end_date.toDate() >= now
+  );
   const upcoming = allEvents
-    .filter((event) => event.start_date.toDate() >= now)
+    .filter((event) => event.start_date.toDate() > now)
     .sort(
       (a, b) =>
         a.start_date.toDate().getTime() - b.start_date.toDate().getTime()
     );
+
+  const eventsToShow = [...ongoing, ...upcoming];
 
   // format date and time
   const formatDateTime = (timestamp: Event['start_date']) => {
@@ -44,7 +50,7 @@ export default function UpcomingEvents({ allEvents }: UpcomingEventsProps) {
   useEffect(() => {
     const fetchUsernames = async () => {
       const uniqueEmails = Array.from(
-        new Set(upcoming.map((ev) => ev.author).filter(Boolean))
+        new Set(eventsToShow.map((ev) => ev.author).filter(Boolean))
       );
 
       if (uniqueEmails.length > 0 && uniqueEmails.length <= 10) {
@@ -65,12 +71,12 @@ export default function UpcomingEvents({ allEvents }: UpcomingEventsProps) {
     };
 
     fetchUsernames();
-  }, [upcoming]);
+  }, [eventsToShow]);
 
-  if (upcoming.length === 0) {
+  if (eventsToShow.length === 0) {
     return (
       <div className="w-full flex flex-col items-center justify-center p-16">
-        <p className="text-2xl font-bold text-gray-500 text-center">
+        <p className="text-2xl text-gray-500 text-center">
           There is no <span className="text-korean-red">upcoming</span> event
           yet! Follow{' '}
           <Link
@@ -87,7 +93,7 @@ export default function UpcomingEvents({ allEvents }: UpcomingEventsProps) {
 
   return (
     <div className="flex flex-col space-y-8 p-16">
-      {upcoming.map((event) => {
+      {eventsToShow.map((event) => {
         const displayedName = emailToUsername[event.author] || event.author;
 
         return (

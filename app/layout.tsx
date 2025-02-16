@@ -1,16 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-};
-
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
   description: 'Hello, KOSA!',
+};
+
+export const viewport: Viewport = {
+  themeColor: '#FAF6F5',
 };
 
 const notoSansKR = Noto_Sans_KR({
