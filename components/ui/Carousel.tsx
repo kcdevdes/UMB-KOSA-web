@@ -27,7 +27,7 @@ export default function Carousel({ images }: CarouselProps): JSX.Element {
               alt={`Slide ${index + 1}`}
               width={800}
               height={800}
-              className="w-[200] h-[200] md:w-[300] md:h-[300] lg:w-[400] lg:h-[400] object-cover rounded-lg md:rounded-xl lg:rounded-2xl shadow-lg"
+              className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px] object-cover rounded-lg md:rounded-xl lg:rounded-2xl shadow-lg"
               priority
             />
           </div>

@@ -1,0 +1,16 @@
+{
+  "home": {
+    "hero": {
+      "title": "KOSA",
+      "subtitle": "Korean Student Association at UMass Boston"
+    },
+    "aboutUs": {
+      "title": "What is KOSA?",
+      "kosaKo": "KO",
+      "kosaSa": "SA",
+      "description": "is a vibrant community uniting Korean, Korean-American students, exchange students and anyone with a passion for Korean culture. It’s a place where you can",
+      "highlight": "connect with our members and leadership team, discover our past and ongoing activities, and stay informed about upcoming events.",
+      "closing": "More than just a student organization, we are dedicated to fostering an inclusive and welcoming space where meaningful connections thrive and unforgettable memories are made."
+    }
+  }
+}

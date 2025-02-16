@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
-import Link from 'next/link';
-import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
+import fs from 'fs';
+import path from 'path';
 
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
@@ -20,36 +21,44 @@ const notoSansKR = Noto_Sans_KR({
   display: 'swap',
 });
 
-export default function RootLayout({
+async function getMessages(locale: string) {
+  const filePath = path.join(
+    process.cwd(),
+    'public',
+    'locales',
+    `${locale}.json`
+  );
+
+  try {
+    const fileContents = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(fileContents);
+  } catch (error) {
+    console.error(`Error loading locale file for ${locale}:`, error);
+    return {};
+  }
+}
+
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'ko' }];
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params?: { locale?: string };
 }) {
+  const safeLocale = params?.locale || 'en';
+  const messages = await getMessages(safeLocale);
+
   return (
-    <html lang="en" className={notoSansKR.className}>
-      <head>
-        {/* ✅ Google Analytics 스크립트 추가 */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-BXM65EDZD2"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){ dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-BXM65EDZD2');
-          `}
-        </Script>
-      </head>
+    <html lang={safeLocale} className={notoSansKR.className}>
       <body>
-        <Link
-          href="https://foremost-blender-ac2.notion.site/UMB-KOSA-web-19b0f2283b8f807f9415e6e3a7c08cc3?pvs=4"
-          className="fixed z-50 w-full text-center text-korean-red bg-korean-yellow text-sm shadow-md"
-        >
-          Instruction (Beta)
-        </Link>
-        <Providers>{children}</Providers>
+        <Providers locale={safeLocale} messages={messages}>
+          {children}
+        </Providers>
+        <Analytics />
       </body>
     </html>
   );

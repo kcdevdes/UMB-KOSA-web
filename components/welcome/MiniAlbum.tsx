@@ -7,11 +7,9 @@ import Carousel from '../ui/Carousel';
 export default function MiniAlbum() {
   const images = [
     'https://res.cloudinary.com/demo/image/upload/v1652345767/docs/demo_image2.jpg',
-    'https://res.cloudinary.com/demo/image/upload/v1652366604/docs/demo_image5.jpg',
     'https://res.cloudinary.com/demo/image/upload/v1652345874/docs/demo_image1.jpg',
     'https://res.cloudinary.com/demo/image/upload/v1652345767/docs/demo_image3.jpg',
     'https://res.cloudinary.com/demo/image/upload/v1652345767/docs/demo_image2.jpg',
-    'https://res.cloudinary.com/demo/image/upload/v1652366604/docs/demo_image5.jpg',
     'https://res.cloudinary.com/demo/image/upload/v1652345874/docs/demo_image1.jpg',
     'https://res.cloudinary.com/demo/image/upload/v1652345767/docs/demo_image3.jpg',
   ];
