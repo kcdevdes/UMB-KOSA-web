@@ -18,7 +18,7 @@ export default function ForumPage() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [threads, setThreads] = useState<any[]>([]);
   const [currentPage] = useState<number>(1);
-  const threadsPerPage = 5;
+  const threadsPerPage = 10;
   const t = useTranslations('forum');
 
   const categories = [
@@ -50,22 +50,18 @@ export default function ForumPage() {
         console.log('📌 [Filter Status] Language:', language);
         console.log('📌 [Sort Option] Sort by:', sortOption);
 
-        // ✅ 카테고리 필터 추가
         if (category !== 'All Categories') {
           filters.push(where('category', '==', category));
         }
 
-        // ✅ 언어 필터 추가
         if (language !== 'All') {
           filters.push(where('language', '==', language));
         }
 
-        // ✅ Firestore 쿼리에 필터 적용
         if (filters.length > 0) {
           threadsQuery = query(forumsRef, ...filters);
         }
 
-        // ✅ 정렬 옵션 적용 (Firestore에서는 `orderBy`를 사용하려면 반드시 인덱스 필요)
         if (sortOption === 'Newest') {
           threadsQuery = query(threadsQuery, orderBy('createdAt', 'desc'));
         } else {
@@ -129,10 +125,10 @@ export default function ForumPage() {
       <div className="bg-gray-100 pt-24 sm:pt-32">
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-xl">
-            <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
+            <h2 className="text-3xl font-semibold tracking-tight text-black sm:text-4xl font-Shilla">
               {t('title')}
             </h2>
-            <p className="text-lg/8 text-black">{t('description')}</p>
+            <p className="text-lg text-black">{t('description')}</p>
           </div>
         </div>
       </div>
@@ -175,22 +171,22 @@ export default function ForumPage() {
               Create Thread
             </Button>
           </div>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-3">
             {currentThreads.length > 0 ? (
               currentThreads.map((thread) => (
                 <Card
                   key={thread.id}
-                  className="p-0 rounded-lg shadow-md bg-white"
+                  className="p-3 rounded-md shadow bg-white h-32 flex flex-col justify-between"
                   onClick={() => router.push(`/forum/${thread.id}`)}
                   style={{ cursor: 'pointer' }}
                 >
-                  <h5 className="text-lg font-bold">
+                  <h5 className="text-md font-semibold leading-tight">
                     {truncate(thread.title, 50)}
                   </h5>
-                  <p className="text-gray-600 break-words">
-                    {truncate(thread.content, 300) || 'No content available.'}
+                  <p className="text-gray-600 text-sm leading-tight">
+                    {truncate(thread.content, 100) || 'No content available.'}
                   </p>
-                  <div className="flex justify-between text-sm text-gray-500 mt-2">
+                  <div className="flex justify-between text-xs text-gray-500 mt-2">
                     <span>
                       {thread.author} | {thread.category} | {thread.language} |{' '}
                       {new Date(
