@@ -32,7 +32,6 @@ export default function ForumDetail() {
   const { user } = useAuth();
 
   const [thread, setThread] = useState<Forum | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [comments, setComments] = useState<
     { id: string; text: string; author: string; createdAt: Timestamp }[]
   >([]);
@@ -101,6 +100,7 @@ export default function ForumDetail() {
 
     fetchThreadsAndComments();
     handleViewCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forumId]);
 
   const handleViewCount = async () => {
