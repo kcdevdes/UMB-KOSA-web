@@ -39,29 +39,44 @@ export default function ForumPage() {
 
     const fetchThreads = async () => {
       try {
+        console.log('🔍 [Firestore Query] Fetching forum threads...');
+
         const forumsRef = collection(db, 'forums');
 
         let threadsQuery = query(forumsRef);
-
         const filters = [];
 
+        console.log('📌 [Filter Status] Category:', category);
+        console.log('📌 [Filter Status] Language:', language);
+        console.log('📌 [Sort Option] Sort by:', sortOption);
+
+        // ✅ 카테고리 필터 추가
         if (category !== 'All Categories') {
           filters.push(where('category', '==', category));
         }
 
+        // ✅ 언어 필터 추가
         if (language !== 'All') {
           filters.push(where('language', '==', language));
         }
 
+        // ✅ Firestore 쿼리에 필터 적용
         if (filters.length > 0) {
           threadsQuery = query(forumsRef, ...filters);
         }
 
+        // ✅ 정렬 옵션 적용 (Firestore에서는 `orderBy`를 사용하려면 반드시 인덱스 필요)
         if (sortOption === 'Newest') {
           threadsQuery = query(threadsQuery, orderBy('createdAt', 'desc'));
         } else {
           threadsQuery = query(threadsQuery, orderBy('view', 'desc'));
         }
+
+        console.log(
+          '🚀 [Firestore Query] Executing query with filters:',
+          filters
+        );
+        console.log('📊 [Firestore Query] Sorting applied:', sortOption);
 
         const snapshot = await getDocs(threadsQuery);
         const threadsData = snapshot.docs.map((doc) => ({
@@ -73,9 +88,18 @@ export default function ForumPage() {
           ...doc.data(),
         }));
 
+        console.log(
+          '✅ [Firestore Query] Retrieved threads count:',
+          threadsData.length
+        );
+        console.log('📝 [Firestore Query] Retrieved threads:', threadsData);
+
         setThreads(threadsData);
       } catch (error) {
-        console.error('Error fetching threads:', error);
+        console.error(
+          '❌ [Firestore Query Error] Error fetching threads:',
+          error
+        );
       }
     };
 
