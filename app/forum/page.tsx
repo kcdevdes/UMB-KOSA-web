@@ -40,21 +40,23 @@ export default function ForumPage() {
     const fetchThreads = async () => {
       try {
         const forumsRef = collection(db, 'forums');
+
         let threadsQuery = query(forumsRef);
 
         const filters = [];
+
         if (category !== 'All Categories') {
           filters.push(where('category', '==', category));
         }
+
         if (language !== 'All') {
           filters.push(where('language', '==', language));
         }
 
         if (filters.length > 0) {
-          threadsQuery = query(threadsQuery, ...filters);
+          threadsQuery = query(forumsRef, ...filters);
         }
 
-        // 🔹 정렬 적용 (복합 인덱스 필요 가능)
         if (sortOption === 'Newest') {
           threadsQuery = query(threadsQuery, orderBy('createdAt', 'desc'));
         } else {
@@ -64,7 +66,10 @@ export default function ForumPage() {
         const snapshot = await getDocs(threadsQuery);
         const threadsData = snapshot.docs.map((doc) => ({
           id: doc.id,
-          view: doc.data()?.view ?? 0, // 🔹 기본값 처리
+          view: doc.data()?.view ?? 0,
+          createdAt: doc.data()?.createdAt?.seconds
+            ? new Date(doc.data().createdAt.seconds * 1000)
+            : new Date(),
           ...doc.data(),
         }));
 
