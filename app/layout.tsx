@@ -5,6 +5,7 @@ import { Providers } from './providers';
 import { Analytics } from '@vercel/analytics/react';
 import fs from 'fs';
 import path from 'path';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
@@ -79,6 +80,12 @@ export default async function RootLayout({
   return (
     <html lang={safeLocale} className={notoSansKR.className}>
       <body>
+        <Link
+          href="https://foremost-blender-ac2.notion.site/UMB-KOSA-web-19b0f2283b8f807f9415e6e3a7c08cc3?pvs=74"
+          className="fixed z-50 w-screen bg-yellow-300 text-center underline text-red-600 hover:text-red-900 "
+        >
+          Instruction (Beta)
+        </Link>
         <Providers locale={safeLocale} messages={messages}>
           {children}
         </Providers>
