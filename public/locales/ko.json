@@ -59,5 +59,9 @@
     "emailPlaceHolder": "이메일",
     "messagePlaceHolder": "본문(영어/한국어)",
     "buttonText": "전서구 날리기 🕊️🕊️"
+  },
+  "forum": {
+    "title": "자신만의 생각을 공유해주세요",
+    "description": "KOSA는 다양한 의견을 존중하며, 여러분의 생각을 듣고 싶어요. 자유롭게 글을 남겨주세요."
   }
 }

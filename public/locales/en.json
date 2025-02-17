@@ -59,5 +59,9 @@
     "emailPlaceHolder": "Your Email",
     "messagePlaceHolder": "Your Message (Kor/Eng are both welcome)",
     "buttonText": "Send Carrier Pigons 🕊️🕊️"
+  },
+  "forum": {
+    "title": "Share Your Thoughts Freely",
+    "description": "We are always open to your thoughts and suggestions. Please share your thoughts with us."
   }
 }

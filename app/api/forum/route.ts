@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/firebase/firebase';
 import {
   collection,
-  addDoc,
   doc,
   getDoc,
+  setDoc,
   Timestamp,
   deleteDoc,
   updateDoc,
@@ -51,11 +52,12 @@ export async function POST(req: Request) {
       );
     }
 
+    // 문서 ID를 직접 생성하여 일치하도록 함
     const forumRef = collection(db, 'forums');
-    const newForumRef = doc(forumRef);
+    const newForumRef = doc(forumRef); // 미리 생성된 문서 ID 사용
 
     const newPost: Forum = {
-      id: newForumRef.id,
+      id: newForumRef.id, // 여기에 Firestore의 문서 ID를 직접 설정
       title,
       content,
       category,
@@ -68,10 +70,11 @@ export async function POST(req: Request) {
       comments: `forums/${newForumRef.id}/comments`,
     };
 
-    await addDoc(forumRef, newPost);
+    // setDoc()을 사용하여 문서를 생성하면서 ID를 유지
+    await setDoc(newForumRef, newPost);
 
     return NextResponse.json(
-      { message: 'Post created successfully' },
+      { message: 'Post created successfully', id: newForumRef.id },
       { status: 201 }
     );
   } catch (error) {
@@ -107,7 +110,6 @@ export async function DELETE(req: NextRequest) {
       { message: 'Post deleted successfully' },
       { status: 200 }
     );
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to delete post' },
@@ -138,14 +140,13 @@ export async function PATCH(req: NextRequest) {
     await updateDoc(postRef, {
       title,
       content,
-      updatedAt: new Date(),
+      updatedAt: Timestamp.now(), // Firestore Timestamp 사용
     });
 
     return NextResponse.json(
       { message: 'Post updated successfully' },
       { status: 200 }
     );
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to update post' },

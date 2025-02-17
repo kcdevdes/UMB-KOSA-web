@@ -68,7 +68,7 @@ export default function MyNavbar() {
       </div>
 
       <Navbar.Collapse>
-        <Navbar.Link as={Link} href="/" className="hover:!text-gray-400">
+        <Navbar.Link as={Link} href="/" className="hover:!text-korean-red">
           Home
         </Navbar.Link>
         <Navbar.Link as={Link} href="/about" className="hover:!text-korean-red">

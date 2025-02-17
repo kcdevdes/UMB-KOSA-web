@@ -44,8 +44,7 @@ export default function AuthPage() {
 
           const token = await result.user.getIdToken();
           await saveAuthToken(token);
-
-          setTimeout(() => router.push('/'), 1000);
+          return;
         } catch (err: unknown) {
           console.error(err);
           if ((err as { code: string }).code === 'auth/invalid-action-code') {

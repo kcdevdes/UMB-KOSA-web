@@ -1,37 +1,56 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { TextInput, Textarea, Button, Dropdown } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 import MyNavbar from '@/components/ui/MyNavbar';
 import Footer from '@/components/ui/Footer';
 import { CldUploadWidget } from 'next-cloudinary';
+import { useAuth } from '@/lib/hook/useAuth';
 
 export default function CreatePostPage() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [category, setCategory] = useState('General');
   const [language, setLanguage] = useState('English');
-  const [imageURL, setImageURL] = useState<string | null>(null);
+  const [imageURLs, setImageURLs] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const categories = [
-    'General',
-    'Academics',
-    'Events',
-    'Jobs',
-    'Sell&Buy',
-    'Sports',
-  ];
+  const { userInfo } = useAuth();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [category, setCategory] = useState('General');
+
+  useEffect(() => {
+    if (userInfo?.role === 'admin') {
+      setIsAdmin(true);
+      setCategory('Announcements');
+    }
+  }, [userInfo]);
+
+  const categories = isAdmin
+    ? [
+        'Announcements',
+        'General',
+        'Academics',
+        'Events',
+        'Jobs',
+        'Sell&Buy',
+        'Sports',
+      ]
+    : ['General', 'Academics', 'Events', 'Jobs', 'Sell&Buy', 'Sports'];
+
   const languages = ['English', 'Korean', 'Mixed'];
 
   const handleUploadSuccess = (result: any) => {
     if (result.event === 'success') {
-      setImageURL(result.info.secure_url);
-      alert('Image uploaded successfully!');
+      if (imageURLs.length < 3) {
+        setImageURLs((prev) => [...prev, result.info.secure_url]);
+        alert('Image uploaded successfully!');
+      } else {
+        alert('You can upload up to 3 images only.');
+      }
     }
   };
 
@@ -52,7 +71,7 @@ export default function CreatePostPage() {
           content,
           category,
           language,
-          thumbnails: imageURL || '',
+          thumbnails: imageURLs,
         }),
       });
 
@@ -65,7 +84,7 @@ export default function CreatePostPage() {
       }
     } catch (error) {
       console.error('Submission error:', error);
-      alert('Failed to submit post.');
+      alert('Failed to submit thread.');
     } finally {
       setLoading(false);
     }
@@ -85,7 +104,7 @@ export default function CreatePostPage() {
               <TextInput
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Enter post title"
+                placeholder="Enter thread title"
               />
             </div>
             <div className="mb-4">
@@ -119,13 +138,13 @@ export default function CreatePostPage() {
               <Textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Write your post content here..."
+                placeholder="Write your thread content here..."
                 rows={6}
               />
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
-                Image (Up to 1)
+                Images (Up to 3)
               </label>
               <CldUploadWidget
                 uploadPreset="umass-kosa-assets"
@@ -136,19 +155,24 @@ export default function CreatePostPage() {
                     onClick={() => open()}
                     className="bg-blue-500 hover:bg-blue-700 text-white"
                   >
-                    Upload Image
+                    Upload Images
                   </Button>
                 )}
               </CldUploadWidget>
             </div>
-            {imageURL && (
-              <Image
-                src={imageURL}
-                alt="Uploaded Preview"
-                className="mt-4 rounded-lg max-w-xs"
-                width={400}
-                height={400}
-              />
+            {imageURLs.length > 0 && (
+              <div className="mt-4 flex gap-4">
+                {imageURLs.map((url, index) => (
+                  <Image
+                    key={index}
+                    src={url}
+                    alt={`Uploaded Preview ${index + 1}`}
+                    className="rounded-lg max-w-xs"
+                    width={400}
+                    height={400}
+                  />
+                ))}
+              </div>
             )}
             <div className="flex justify-end">
               <Button

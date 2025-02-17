@@ -7,17 +7,26 @@ import MyNavbar from '@/components/ui/MyNavbar';
 import { Dropdown, TextInput, Button, Card } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 import { db } from '@/lib/firebase/firebase';
-import { collection, getDocs, query, orderBy, where } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  where,
+  Firestore,
+} from 'firebase/firestore';
+import { useTranslations } from 'next-intl';
 
 export default function ForumPage() {
   const router = useRouter();
   const [category, setCategory] = useState('All Categories');
-  const [language, setLanguage] = useState('All');
+  const [language, setLanguage] = useState('English');
   const [sortOption, setSortOption] = useState('Newest');
   const [searchQuery, setSearchQuery] = useState('');
-  const [posts, setPosts] = useState<any[]>([]);
+  const [threads, setThreads] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 5;
+  const threadsPerPage = 5;
+  const t = useTranslations('forum');
 
   const categories = [
     'All Categories',
@@ -33,62 +42,79 @@ export default function ForumPage() {
   const sortOptions = ['Newest', 'Popular'];
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchThreads = async (db: Firestore) => {
       try {
-        let postsQuery = query(collection(db, 'forums'));
+        const forumsRef = collection(db, 'forums');
+
+        let threadsQuery = query(forumsRef);
 
         if (category !== 'All Categories') {
-          postsQuery = query(postsQuery, where('category', '==', category));
+          threadsQuery = query(threadsQuery, where('category', '==', category));
         }
 
         if (language !== 'All') {
-          postsQuery = query(postsQuery, where('language', '==', language));
+          threadsQuery = query(threadsQuery, where('language', '==', language));
         }
 
         if (sortOption === 'Newest') {
-          postsQuery = query(postsQuery, orderBy('createdAt', 'desc'));
+          threadsQuery = query(threadsQuery, orderBy('createdAt', 'desc'));
         } else {
-          postsQuery = query(postsQuery, orderBy('views', 'desc'));
+          threadsQuery = query(threadsQuery, orderBy('view', 'desc'));
         }
 
-        const snapshot = await getDocs(postsQuery);
-        const postsData = snapshot.docs.map((doc) => ({
+        const snapshot = await getDocs(threadsQuery);
+        const threadsData = snapshot.docs.map((doc) => ({
           id: doc.id,
+          view: 0,
           ...doc.data(),
         }));
 
-        setPosts(postsData);
+        setThreads(threadsData);
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error('Error fetching threads:', error);
       }
     };
 
-    fetchPosts();
+    fetchThreads(db);
   }, [category, language, sortOption]);
 
   const truncate = (str: string, length: number) => {
     return str.length > length ? str.substring(0, length) + '...' : str;
   };
 
-  const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredThreads = threads.filter((threads) => {
+    if (searchQuery.startsWith('@')) {
+      const emailSearch = searchQuery.slice(1).toLowerCase();
+      return threads.author.toLowerCase().includes(emailSearch);
+    }
+    return threads.title.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-  const currentPosts = filteredPosts.slice(
-    (currentPage - 1) * postsPerPage,
-    currentPage * postsPerPage
+  const totalPages = Math.ceil(filteredThreads.length / threadsPerPage);
+  const currentThreads = filteredThreads.slice(
+    (currentPage - 1) * threadsPerPage,
+    currentPage * threadsPerPage
   );
 
   return (
     <>
       <MyNavbar />
-      <div className="pt-24 min-h-screen flex flex-col bg-gray-50">
+      <div className="bg-gray-100 pt-24 sm:pt-32">
+        <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
+          <div className="max-w-xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-pretty text-black sm:text-4xl font-Shilla">
+              {t('title')}
+            </h2>
+            <p className="text-lg/8 text-black">{t('description')}</p>
+          </div>
+        </div>
+      </div>
+      <div className="pt-0 min-h-screen flex flex-col bg-gray-100">
         <div className="container mx-auto px-4 py-6 flex-grow">
           <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
             <TextInput
               className="w-full md:w-1/3"
-              placeholder="Search posts"
+              placeholder="Search threads (@your.email to search your threads)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -119,33 +145,35 @@ export default function ForumPage() {
               className="bg-korean-red hover:bg-red-900"
               onClick={() => router.push('/forum/create')}
             >
-              Create Post
+              Create Thread
             </Button>
           </div>
           <div className="grid grid-cols-1 gap-4">
-            {currentPosts.length > 0 ? (
-              currentPosts.map((post) => (
+            {currentThreads.length > 0 ? (
+              currentThreads.map((thead) => (
                 <Card
-                  key={post.id}
+                  key={thead.id}
                   className="p-0 rounded-lg shadow-md bg-white"
+                  onClick={() => router.push(`/forum/${thead.id}`)}
+                  style={{ cursor: 'pointer' }}
                 >
-                  <h5 className="text-lg font-bold">{post.title}</h5>
+                  <h5 className="text-lg font-bold">{thead.title}</h5>
                   <p className="text-gray-600">
-                    {truncate(post.content || 'No content available.', 300)}
+                    {truncate(thead.content || 'No content available.', 300)}
                   </p>
                   <div className="flex justify-between text-sm text-gray-500 mt-2">
                     <span>
-                      {post.author} | {post.category} | {post.language} |{' '}
+                      {thead.author} | {thead.category} | {thead.language} |{' '}
                       {new Date(
-                        post.createdAt?.seconds * 1000
+                        thead.createdAt?.seconds * 1000
                       ).toLocaleDateString('en-US')}
                     </span>
-                    <span>Views {post.views || 0}</span>
+                    <span>Views {thead.view || 0}</span>
                   </div>
                 </Card>
               ))
             ) : (
-              <p className="text-center text-gray-500">No posts found.</p>
+              <p className="text-center text-gray-500">No Threads found.</p>
             )}
           </div>
           <div className="flex justify-center mt-6">
