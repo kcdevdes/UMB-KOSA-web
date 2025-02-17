@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -30,7 +30,10 @@ export default function UpcomingEvents({ allEvents }: UpcomingEventsProps) {
         a.start_date.toDate().getTime() - b.start_date.toDate().getTime()
     );
 
-  const eventsToShow = [...ongoing, ...upcoming];
+  const eventsToShow = useMemo(
+    () => [...ongoing, ...upcoming],
+    [ongoing, upcoming]
+  );
 
   // format date and time
   const formatDateTime = (timestamp: Event['start_date']) => {

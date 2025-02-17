@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: 'UMB | KOSA',
     images: [
       {
-        url: 'https://umbkosa.org/kosa-logo.jpg',
+        url: 'https://www.umbkosa.org/images/kosa-logo.jpg',
         width: 800,
         height: 800,
       },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'UMB | KOSA',
     description:
       'UMass Boston Korean Student Association | UMass Boston 한국학생회 공식 홈페이지입니다.',
-    images: ['https://yourdomain.com/kosa-logo.png'],
+    images: ['https://www.umbkosa.org/images/kosa-logo.jpg'],
   },
 };
 
@@ -45,14 +45,13 @@ const notoSansKR = Noto_Sans_KR({
   display: 'swap',
 });
 
-async function getMessages(locale: string) {
+function getMessages(locale: string) {
   const filePath = path.join(
     process.cwd(),
     'public',
     'locales',
     `${locale}.json`
   );
-
   try {
     const fileContents = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(fileContents);
@@ -62,7 +61,7 @@ async function getMessages(locale: string) {
   }
 }
 
-export function generateStaticParams() {
+export function generateStaticParams(): { locale: string }[] {
   return [{ locale: 'en' }, { locale: 'ko' }];
 }
 
@@ -71,10 +70,11 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params?: { locale?: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const safeLocale = params?.locale || 'en';
-  const messages = await getMessages(safeLocale);
+  const resolvedParams = await params;
+  const safeLocale = resolvedParams.locale || 'en';
+  const messages = getMessages(safeLocale);
 
   return (
     <html lang={safeLocale} className={notoSansKR.className}>
