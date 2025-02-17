@@ -1,0 +1,67 @@
+{
+  "home": {
+    "hero": {
+      "title": "KOSA",
+      "subtitle": "UMass 보스턴 한국학생회"
+    },
+    "aboutUs": {
+      "title": "KOSA란?",
+      "kosaKo": "KO",
+      "kosaSa": "SA",
+      "description": "는 한국인, 한국계 미국인, 교환학생 및 한국 문화를 사랑하는 모든 사람들을 위한 활기찬 커뮤니티에요. 이곳은 여러분이",
+      "highlight": " 회원들과 만나고, 과거와 현재의 활동을 살펴보며, 다가오는 이벤트를 확인할 수 있는 공간이에요.",
+      "closing": "포용적이고 따뜻한 공간을 만들어 의미 있는 관계를 맺고 잊지 못할 추억을 쌓을 수 있도록 돕고 있어요."
+    },
+    "stats": {
+      "members": "명의 멤버가 있어요",
+      "events": "지금까지의 이벤트 수는",
+      "dateLocale": "ko-KR"
+    },
+    "miniAlbum": {
+      "ourMemory": "활동 사진"
+    },
+    "alias": {
+      "about": "멤버 소개",
+      "forum": "자신만의 생각/후기 남기기",
+      "event": "새로운 이벤트 찾아보기",
+      "post": "과거 활동 알아보기",
+      "contact": "연결이 필요하세요?"
+    }
+  },
+  "about": {
+    "reference": {
+      "title": "SNS에서 만나요",
+      "description": "저희는 다양한 사람들을 하나로 묶는 이벤트, 혹은 뉴스, 소식 등을 SNS를 통해 업로드 하고 있어요."
+    },
+    "memberProfile": {
+      "title": "저희 ",
+      "kosaKo": "KO",
+      "kosaSa": "SA",
+      "titleEnd": " 멤버들을 만나봐요"
+    }
+  },
+  "event": {
+    "title": "다음엔 무엇이 열릴까요",
+    "description": "코사를 지원하는 가장 좋은 방법은 코사 이벤트에 참여하는 거에요. 항상 환영해요.",
+    "upcoming": "다가오는 이벤트",
+    "past": "지난 이벤트",
+    "noEvent": "There is no upcoming event yet! Follow KOSA Instagram for up-to-date information",
+    "loading": "잠시만요...저희 전서구가 날라가고 있어요...🕊️🕊️"
+  },
+  "post": {
+    "title": "저희의 과거 활동들이에요",
+    "description": "저희가 저희의 활동을 방문하시는 분들께 보여드려요. 둘러봐주세요.",
+    "loading": "잠시만요...저희 전서구가 날라가고 있어요...🕊️🕊️"
+  },
+  "contact": {
+    "title": "연락이 필요하신가요?",
+    "description": "KOSA는 항상 여러분들의 이야기를 듣고 있습니다. 가입이나 혹은 활동 문의 등 편하게 질문 주시면 빠르게 답변 드려요.",
+    "emailPlaceHolder": "이메일",
+    "messagePlaceHolder": "본문(영어/한국어)",
+    "buttonText": "전서구 날리기 🕊️🕊️"
+  },
+  "forum": {
+    "title": "자신만의 생각을 공유해주세요",
+    "description": "KOSA는 다양한 의견을 존중하며, 여러분의 생각을 듣고 싶어요. 자유롭게 글을 남겨주세요."
+  }
+}

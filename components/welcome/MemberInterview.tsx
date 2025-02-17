@@ -18,7 +18,7 @@ const interviews = [
   {
     name: 'Gibeom Choi',
     image: '/images/member-profile/gibeom_choi.png',
-    content: 'I am a coder of this website. 👏👏👏',
+    content: 'I am a coder of this website.',
   },
 ];
 
@@ -31,8 +31,8 @@ export default function MemberInterview() {
           className="flex flex-col lg:flex-row items-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }} // 👈 스크롤 시 개별적으로 실행
-          transition={{ duration: 0.8, ease: 'easeOut', delay: index * 0.2 }} // 👈 순차적 실행 (0.2초 간격)
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: index * 0.2 }}
         >
           <Image
             src={interview.image}

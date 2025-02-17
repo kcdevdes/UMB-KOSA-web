@@ -1,13 +1,10 @@
-/**
- * AboutUs Component
- * Show the information about the team members, and Social Media
- */
 'use client';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function AboutUs() {
-  // 스크롤 트리거 방식이 아니라 자연스럽게 등장하는 방식 적용
+  const t = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -22,7 +19,7 @@ export default function AboutUs() {
       className="relative w-full h-[80vh] bg-gray-100 flex flex-col justify-center items-center z-10"
       initial={{ opacity: 0, y: -50 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 4, ease: 'easeOut' }}
+      transition={{ duration: 1, ease: 'easeOut' }}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 items-center">
         <div className="mx-auto max-w-2xl lg:text-center">
@@ -32,7 +29,7 @@ export default function AboutUs() {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            What is KOSA?
+            {t('home.aboutUs.title')}
           </motion.p>
         </div>
         <motion.div
@@ -41,22 +38,22 @@ export default function AboutUs() {
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <span className="text-korean-blue font-bold">KO</span>
-          <span className="text-korean-red font-bold">SA</span> is a vibrant
-          community uniting Korean, Korean-American students, and anyone with a
-          passion for Korean culture. It’s a place where you can{' '}
+          <span className="text-korean-blue font-bold">
+            {t('home.aboutUs.kosaKo')}
+          </span>
+          <span className="text-korean-red font-bold">
+            {t('home.aboutUs.kosaSa')}
+          </span>{' '}
+          {t('home.aboutUs.description')}
           <motion.span
             className="text-korean-black font-bold"
             initial={{ opacity: 0, y: 10 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1 }}
           >
-            connect with our members and leadership team, discover our past and
-            ongoing activities, and stay informed about upcoming events.
+            {t('home.aboutUs.highlight')}
           </motion.span>{' '}
-          More than just a student organization, we are dedicated to fostering
-          an inclusive and welcoming space where meaningful connections thrive
-          and unforgettable memories are made.
+          {t('home.aboutUs.closing')}
         </motion.div>
       </div>
     </motion.div>
