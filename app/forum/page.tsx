@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -39,16 +38,10 @@ export default function ForumPage() {
 
     const fetchThreads = async () => {
       try {
-        console.log('🔍 [Firestore Query] Fetching forum threads...');
-
         const forumsRef = collection(db, 'forums');
 
         let threadsQuery = query(forumsRef);
         const filters = [];
-
-        console.log('📌 [Filter Status] Category:', category);
-        console.log('📌 [Filter Status] Language:', language);
-        console.log('📌 [Sort Option] Sort by:', sortOption);
 
         if (category !== 'All Categories') {
           filters.push(where('category', '==', category));
@@ -68,12 +61,6 @@ export default function ForumPage() {
           threadsQuery = query(threadsQuery, orderBy('view', 'desc'));
         }
 
-        console.log(
-          '🚀 [Firestore Query] Executing query with filters:',
-          filters
-        );
-        console.log('📊 [Firestore Query] Sorting applied:', sortOption);
-
         const snapshot = await getDocs(threadsQuery);
         const threadsData = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -84,18 +71,9 @@ export default function ForumPage() {
           ...doc.data(),
         }));
 
-        console.log(
-          '✅ [Firestore Query] Retrieved threads count:',
-          threadsData.length
-        );
-        console.log('📝 [Firestore Query] Retrieved threads:', threadsData);
-
         setThreads(threadsData);
       } catch (error) {
-        console.error(
-          '❌ [Firestore Query Error] Error fetching threads:',
-          error
-        );
+        console.error('❌ Error fetching threads:', error);
       }
     };
 
@@ -176,15 +154,15 @@ export default function ForumPage() {
               currentThreads.map((thread) => (
                 <Card
                   key={thread.id}
-                  className="p-3 rounded-md shadow bg-white h-32 flex flex-col justify-between"
+                  className="p-3 rounded-md shadow bg-white min-h-32 max-h-auto flex flex-col justify-between"
                   onClick={() => router.push(`/forum/${thread.id}`)}
                   style={{ cursor: 'pointer' }}
                 >
-                  <h5 className="text-md font-semibold leading-tight">
+                  <h5 className="text-md font-semibold leading-tight break-words">
                     {truncate(thread.title, 50)}
                   </h5>
-                  <p className="text-gray-600 text-sm leading-tight">
-                    {truncate(thread.content, 100) || 'No content available.'}
+                  <p className="text-gray-600 text-sm leading-tight break-words whitespace-pre-line">
+                    {truncate(thread.content, 200) || 'No content available.'}
                   </p>
                   <div className="flex justify-between text-xs text-gray-500 mt-2">
                     <span>

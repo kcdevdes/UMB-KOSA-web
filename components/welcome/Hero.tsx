@@ -8,7 +8,7 @@ export default function Hero() {
 
   return (
     <div className="relative h-screen w-full z-0">
-      <div className="absolute inset-0 bg-no-repeat bg-cover bg-center bg-[url('/images/korea-traditional-tree.jpg')] opacity-100"></div>
+      <div className="absolute inset-0 bg-no-repeat bg-cover bg-center bg-[url('/images/temple-bell.jpg')] opacity-100"></div>
       <div className="absolute inset-0 bg-gradient-to-bl from-[#005A8B] via-[#FFFFFF] to-[#B82647] opacity-50"></div>
 
       <motion.div
