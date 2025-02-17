@@ -212,10 +212,10 @@ export default function ForumDetail() {
       <MyNavbar />
       <div className="pt-24 max-w-3xl mx-auto px-6">
         <div className="bg-white rounded-lg py-6">
-          <h1 className="text-4xl font-extrabold text-gray-900 border-b pb-3">
+          <h1 className="text-4xl font-extrabold text-gray-900 break-words border-b pb-3">
             {thread.title}
           </h1>
-          <p className="mt-4 text-gray-700 text-lg leading-relaxed whitespace-pre-line">
+          <p className="mt-4 text-gray-700 text-lg leading-relaxed break-words whitespace-pre-line">
             {thread.content}
           </p>
           <p className="text-sm text-gray-500 mt-4 italic">

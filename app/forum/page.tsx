@@ -7,24 +7,17 @@ import MyNavbar from '@/components/ui/MyNavbar';
 import { Dropdown, TextInput, Button, Card } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 import { db } from '@/lib/firebase/firebase';
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  where,
-  Firestore,
-} from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, where } from 'firebase/firestore';
 import { useTranslations } from 'next-intl';
 
 export default function ForumPage() {
   const router = useRouter();
-  const [category, setCategory] = useState('All Categories');
-  const [language, setLanguage] = useState('English');
-  const [sortOption, setSortOption] = useState('Newest');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [category, setCategory] = useState<string>('All Categories');
+  const [language, setLanguage] = useState<string>('All');
+  const [sortOption, setSortOption] = useState<string>('Newest');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [threads, setThreads] = useState<any[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState<number>(1);
   const threadsPerPage = 5;
   const t = useTranslations('forum');
 
@@ -42,22 +35,26 @@ export default function ForumPage() {
   const sortOptions = ['Newest', 'Popular'];
 
   useEffect(() => {
-    const fetchThreads = async (db: Firestore) => {
+    if (typeof window === 'undefined') return;
+
+    const fetchThreads = async () => {
       try {
         const forumsRef = collection(db, 'forums');
-        const filters = [];
+        let threadsQuery = query(forumsRef);
 
+        const filters = [];
         if (category !== 'All Categories') {
           filters.push(where('category', '==', category));
         }
-
         if (language !== 'All') {
           filters.push(where('language', '==', language));
         }
 
-        let threadsQuery = query(forumsRef, ...filters);
+        if (filters.length > 0) {
+          threadsQuery = query(threadsQuery, ...filters);
+        }
 
-        // Firestore에서는 orderBy를 사용하기 위해 인덱스가 필요함
+        // 🔹 정렬 적용 (복합 인덱스 필요 가능)
         if (sortOption === 'Newest') {
           threadsQuery = query(threadsQuery, orderBy('createdAt', 'desc'));
         } else {
@@ -67,7 +64,7 @@ export default function ForumPage() {
         const snapshot = await getDocs(threadsQuery);
         const threadsData = snapshot.docs.map((doc) => ({
           id: doc.id,
-          view: 0,
+          view: doc.data()?.view ?? 0, // 🔹 기본값 처리
           ...doc.data(),
         }));
 
@@ -77,22 +74,21 @@ export default function ForumPage() {
       }
     };
 
-    fetchThreads(db);
+    fetchThreads();
   }, [category, language, sortOption]);
 
   const truncate = (str: string, length: number) => {
     return str.length > length ? str.substring(0, length) + '...' : str;
   };
 
-  const filteredThreads = threads.filter((threads) => {
+  const filteredThreads = threads.filter((thread) => {
     if (searchQuery.startsWith('@')) {
       const emailSearch = searchQuery.slice(1).toLowerCase();
-      return threads.author.toLowerCase().includes(emailSearch);
+      return thread.author?.toLowerCase().includes(emailSearch);
     }
-    return threads.title.toLowerCase().includes(searchQuery.toLowerCase());
+    return thread.title?.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
-  const totalPages = Math.ceil(filteredThreads.length / threadsPerPage);
   const currentThreads = filteredThreads.slice(
     (currentPage - 1) * threadsPerPage,
     currentPage * threadsPerPage
@@ -152,50 +148,33 @@ export default function ForumPage() {
           </div>
           <div className="grid grid-cols-1 gap-4">
             {currentThreads.length > 0 ? (
-              currentThreads.map((thead) => (
+              currentThreads.map((thread) => (
                 <Card
-                  key={thead.id}
+                  key={thread.id}
                   className="p-0 rounded-lg shadow-md bg-white"
-                  onClick={() => router.push(`/forum/${thead.id}`)}
+                  onClick={() => router.push(`/forum/${thread.id}`)}
                   style={{ cursor: 'pointer' }}
                 >
-                  <h5 className="text-lg font-bold">{thead.title}</h5>
-                  <p className="text-gray-600">
-                    {truncate(thead.content || 'No content available.', 300)}
+                  <h5 className="text-lg font-bold">
+                    {truncate(thread.title, 50)}
+                  </h5>
+                  <p className="text-gray-600 break-words">
+                    {truncate(thread.content, 300) || 'No content available.'}
                   </p>
                   <div className="flex justify-between text-sm text-gray-500 mt-2">
                     <span>
-                      {thead.author} | {thead.category} | {thead.language} |{' '}
+                      {thread.author} | {thread.category} | {thread.language} |{' '}
                       {new Date(
-                        thead.createdAt?.seconds * 1000
+                        thread.createdAt?.seconds * 1000
                       ).toLocaleDateString('en-US')}
                     </span>
-                    <span>Views {thead.view || 0}</span>
+                    <span>Views {thread.view || 0}</span>
                   </div>
                 </Card>
               ))
             ) : (
               <p className="text-center text-gray-500">No Threads found.</p>
             )}
-          </div>
-          <div className="flex justify-center mt-6">
-            <Button
-              className="bg-korean-red mx-2"
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
-            >
-              Previous
-            </Button>
-            <span className="text-lg font-bold mx-4">
-              {currentPage} / {totalPages}
-            </span>
-            <Button
-              className="bg-korean-red mx-2"
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(currentPage + 1)}
-            >
-              Next
-            </Button>
           </div>
         </div>
         <Footer />
