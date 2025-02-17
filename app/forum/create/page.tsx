@@ -10,7 +10,7 @@ import Footer from '@/components/ui/Footer';
 import { CldUploadWidget } from 'next-cloudinary';
 import { useAuth } from '@/lib/hook/useAuth';
 
-export default function CreatePostPage() {
+export default function CreateThreadPage() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -77,7 +77,7 @@ export default function CreatePostPage() {
 
       const data = await response.json();
       if (response.ok) {
-        alert('Post submitted successfully!');
+        alert('Thread submitted successfully!');
         router.push('/forum');
       } else {
         alert(`Error: ${data.error}`);
@@ -95,7 +95,7 @@ export default function CreatePostPage() {
       <MyNavbar />
       <div className="pt-24 min-h-screen flex flex-col bg-gray-50">
         <div className="container mx-auto px-4 py-6 flex-grow">
-          <h2 className="text-2xl font-bold mb-4">Create a New Post</h2>
+          <h2 className="text-2xl font-bold mb-4">Create a New Thread</h2>
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
@@ -180,7 +180,7 @@ export default function CreatePostPage() {
                 onClick={handleSubmit}
                 disabled={loading}
               >
-                {loading ? 'Submitting...' : 'Submit Post'}
+                {loading ? 'Submitting...' : 'Submit Thread'}
               </Button>
             </div>
           </div>
