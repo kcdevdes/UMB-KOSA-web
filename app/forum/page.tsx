@@ -45,17 +45,19 @@ export default function ForumPage() {
     const fetchThreads = async (db: Firestore) => {
       try {
         const forumsRef = collection(db, 'forums');
-
-        let threadsQuery = query(forumsRef);
+        const filters = [];
 
         if (category !== 'All Categories') {
-          threadsQuery = query(threadsQuery, where('category', '==', category));
+          filters.push(where('category', '==', category));
         }
 
         if (language !== 'All') {
-          threadsQuery = query(threadsQuery, where('language', '==', language));
+          filters.push(where('language', '==', language));
         }
 
+        let threadsQuery = query(forumsRef, ...filters);
+
+        // Firestore에서는 orderBy를 사용하기 위해 인덱스가 필요함
         if (sortOption === 'Newest') {
           threadsQuery = query(threadsQuery, orderBy('createdAt', 'desc'));
         } else {
