@@ -85,8 +85,8 @@ export default function LoginForm() {
               Open the login link on the same browser.
             </p>
             <p className="text-sm text-red-600">
-              주의: SNS브라우저 말고, 휴대폰 주 브라우저로 로그인을
-              시도해주시고, 링크는 같은 브라우저로 열어주세요.
+              주의: SNS브라우저 말고, 주 브라우저로 로그인을 시도해주시고,
+              링크는 같은 브라우저로 열어주세요.
             </p>
             <div>
               <Label htmlFor="email" value="Your UMB email" />
