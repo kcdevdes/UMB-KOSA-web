@@ -72,3 +72,8 @@ We welcome contributions from members and volunteers! If you’d like to help im
 For any inquiries, reach out via email at <gibeom.choi001@umb.edu> or follow us on social media!
 
 © 2025 KOSA - UMass Boston Korean Student Association. All rights reserved.
+
+## Roadmap
+
+- Alumni
+- Sponsor
