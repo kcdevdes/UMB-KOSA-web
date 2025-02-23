@@ -47,3 +47,7 @@ database-debug.log
 firebase-debug.log
 firestore-debug.log
 firestore.rules
+
+# pptx
+~$*.pptx
+*.pptx
