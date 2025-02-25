@@ -34,6 +34,7 @@ export const metadata: Metadata = {
       'UMass Boston Korean Student Association | UMass Boston 한국학생회 공식 홈페이지입니다.',
     images: ['https://www.umbkosa.org/images/kosa-logo.jpg'],
   },
+  icons: '/favicon.ico',
 };
 
 export const viewport: Viewport = {
