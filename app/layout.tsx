@@ -5,7 +5,6 @@ import { Providers } from './providers';
 import { Analytics } from '@vercel/analytics/react';
 import fs from 'fs';
 import path from 'path';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
