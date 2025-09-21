@@ -7,33 +7,6 @@
   --foreground: #171717;
 }
 
-/* DARK MODE (not implemented yet) */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-@font-face {
-  font-family: 'ChosunGs';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Shilla_CultureB-Bold';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_CultureB-Bold.woff2')
-    format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Helvetica, Arial, sans-serif;
+  margin: 0px;
 }

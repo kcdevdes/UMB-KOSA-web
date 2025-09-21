@@ -1,20 +1,13 @@
 import type { Config } from 'tailwindcss';
-import { content as flowbiteContent } from 'flowbite-react/tailwind';
-import { plugin as flowbitePlugin } from 'flowbite-react/tailwind';
 
 export default {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    flowbiteContent(),
   ],
   theme: {
     extend: {
-      fontFamily: {
-        Shilla: ['Shilla_CultureB-Bold'],
-        Chosun: ['ChosunGs'],
-      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
@@ -27,5 +20,5 @@ export default {
       },
     },
   },
-  plugins: [flowbitePlugin()],
+  plugins: [],
 } satisfies Config;

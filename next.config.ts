@@ -1,20 +1,14 @@
-import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+import type {NextConfig} from 'next';
+
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
-  i18n: {
-    locales: ['en', 'ko'],
-    defaultLocale: 'en',
-    localeDetection: false,
-  },
   images: {
-    domains: [
-      'res.cloudinary.com',
-      'scontent-bos5-1.cdninstagram.com',
-      'live.staticflickr.com',
-    ],
+    domains: [],
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

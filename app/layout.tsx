@@ -1,10 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
-import { Providers } from './providers';
-import { Analytics } from '@vercel/analytics/react';
-import fs from 'fs';
-import path from 'path';
+
+import { defaultLocale } from '@/i18n';
 
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
@@ -46,45 +44,22 @@ const notoSansKR = Noto_Sans_KR({
   display: 'swap',
 });
 
-function getMessages(locale: string) {
-  const filePath = path.join(
-    process.cwd(),
-    'public',
-    'locales',
-    `${locale}.json`
-  );
-  try {
-    const fileContents = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(fileContents);
-  } catch (error) {
-    console.error(`Error loading locale file for ${locale}:`, error);
-    return {};
-  }
-}
-
-export function generateStaticParams(): { locale: string }[] {
-  return [{ locale: 'en' }, { locale: 'ko' }];
-}
-
 export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale?: string }>;
 }) {
   const resolvedParams = await params;
-  const safeLocale = resolvedParams.locale || 'en';
-  const messages = getMessages(safeLocale);
+  const locale = resolvedParams?.locale ?? defaultLocale;
 
   return (
-    <html lang={safeLocale} className={notoSansKR.className}>
-      <body>
-        <Providers locale={safeLocale} messages={messages}>
-          {children}
-        </Providers>
-        <Analytics />
-      </body>
+    <html lang={locale} className={notoSansKR.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
