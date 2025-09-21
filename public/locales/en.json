@@ -1,67 +1,134 @@
 {
+  "common": {
+    "brand": "KOSA",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact",
+      "story": "Story"
+    },
+    "language": {
+      "kor": "KOR 🇰🇷",
+      "eng": "ENG 🇺🇸",
+      "switchTo": {
+        "kor": "Switch language to Korean",
+        "eng": "Switch language to English"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 KOSA"
+    },
+    "status": {
+      "loading": "Loading...",
+      "empty": "Nothing to show yet."
+    }
+  },
   "home": {
     "hero": {
-      "title": "KOSA",
-      "subtitle": "Korean Student Association at UMass Boston"
+      "title": "KOSA - Korean Student Association",
+      "subtitle": "University of Massachusetts, Boston",
+      "primaryCta": "Join Us",
+      "secondaryCta": "Learn More"
     },
-    "aboutUs": {
-      "title": "What is KOSA?",
-      "kosaKo": "KO",
-      "kosaSa": "SA",
-      "description": "is a vibrant community uniting Korean, Korean-American students, exchange students and anyone with a passion for Korean culture. It’s a place where you can",
-      "highlight": "connect with our members and leadership team, discover our past and ongoing activities, and stay informed about upcoming events.",
-      "closing": "More than just a student organization, we are dedicated to fostering an inclusive and welcoming space where meaningful connections thrive and unforgettable memories are made."
+    "tagline": "KOSA, The Association Dedicated to Sharing Korean Culture and Building Connections",
+    "connection": {
+      "title": "Connection",
+      "mantra": "Network,\nInteract,\nand Bond",
+      "description": "KOSA is a place where you can connect with our members and leadership team, discover our past and ongoing activities, and stay informed about upcoming events."
     },
-    "stats": {
-      "members": "Members in Association",
-      "events": "# of Events",
-      "dateLocale": "en-US"
-    },
-    "miniAlbum": {
-      "ourMemory": "Our Memories"
-    },
-    "alias": {
-      "about": "Meet Our Members",
-      "forum": "Tell Your Thoughts to Us",
-      "event": "Find New Events",
-      "post": "Discover Our Past Activity",
-      "contact": "Need to Contact Us?"
+    "embrace": {
+      "title": "Embrace",
+      "mantra": "Korean,\nKorean-American,\nand anyone who loves Korean culture",
+      "description": "KOSA is a community uniting Korean, Korean-American students, exchange students and anyone with a passion for Korean culture. We deliver every participant an amazing experience about Korean culture."
     }
   },
   "about": {
-    "reference": {
-      "title": "Meet Our Social Media",
-      "description": "We love connecting with diverse people and will keep you updated with events and news through social media"
+    "hero": {
+      "title": "Meet the KOSA E-board members",
+      "description": "We love connecting with diverse people and will keep you updated with events and news through social media."
     },
-    "memberProfile": {
-      "title": "Meet Our ",
-      "kosaKo": "KO",
-      "kosaSa": "SA",
-      "titleEnd": " Members"
+    "members": {
+      "wonjungJin": {
+        "name": "WonJung Jin",
+        "position": "President / Social Media Manager",
+        "description": "Wonjeong is dedicated to support KOSA members, organize impactful events, and ensure that KOSA continues to grow as a network for cultural sharing."
+      },
+      "gibeomChoi": {
+        "name": "Gibeom Choi",
+        "position": "Vice President / Webmaster",
+        "description": "Gibeom manages KOSA's website, ensuring seamless functionality, updates, and accessibility to keep members informed and engaged."
+      },
+      "jiyunLee": {
+        "name": "JiYun Lee",
+        "position": "Secretary",
+        "description": "Jiyun manages communications, organizes meetings, and creates new events for people interested in Korean culture."
+      },
+      "evelynGu": {
+        "name": "Evelyn Gu",
+        "position": "Treasurer",
+        "description": "Evelyn oversees KOSA's financial matters, ensuring responsible budgeting and resource allocation to support our events and initiatives."
+      },
+      "dahyeLim": {
+        "name": "Dahye Lim",
+        "position": "Event Planner",
+        "description": "Dahye organizes engaging events that celebrate Korean culture, fostering community and cultural exchange among KOSA members."
+      },
+      "jonathanChow": {
+        "name": "Jonathan Chow",
+        "position": "Event Planner",
+        "description": "Jonathan collaborates with Dahye to plan and execute events that highlight Korean culture and promote community engagement."
+      },
+      "stevensCharles": {
+        "name": "Stevens Charles",
+        "position": "Social Media Manager",
+        "description": "Stevens curates and manages KOSA's social media presence, sharing updates, events, and cultural content to engage our community."
+      }
     }
   },
-  "event": {
-    "title": "See What's Coming Next",
-    "description": "The best way to support KOSA is by joining our events. Check out what's coming next.",
-    "upcoming": "upcoming",
-    "past": "past",
-    "noEvent": "There is no upcoming event yet! Follow KOSA Instagram for up-to-date information",
-    "loading": "Hang tight... Our carrier pigeon is delivering your events...🕊️🕊️"
-  },
-  "post": {
-    "title": "Discover Our Past Activities",
-    "description": "As a supportive association, we are happy to introduce the activities we have done. Take a look.",
-    "loading": "Hang tight... Our carrier pigeon is delivering your events...🕊️🕊️"
-  },
   "contact": {
-    "title": "Need to Contact Us?",
-    "description": "KOSA's ears are always open! Please reach out to us with your messages.",
-    "emailPlaceHolder": "Your Email",
-    "messagePlaceHolder": "Your Message (Kor/Eng are both welcome)",
-    "buttonText": "Send Carrier Pigons 🕊️🕊️"
+    "hero": {
+      "title": "Contact the KOSA Team",
+      "description": "We're here for collaborations, cultural events, sponsorships, and everything in between. Share a little about what you're looking for, and we'll reach back out shortly."
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "topic": "I'm reaching out about",
+      "topicPlaceholder": "Select a topic",
+      "topics": {
+        "events": "Hosting an event",
+        "collaboration": "Collaboration",
+        "sponsorship": "Sponsorship",
+        "membership": "Membership",
+        "other": "Something else"
+      },
+      "message": "How can we help?",
+      "messagePlaceholder": "Share a few details so we can prepare the best response.",
+      "submit": "Send message",
+      "submitting": "Sending...",
+      "disclaimer": "We respect your inbox. Expect a response within two business days.",
+      "success": "Thanks! Your message is on its way.",
+      "error": "There was a problem sending your message. Please try again.",
+      "validationError": "Please fill in your name, email, and message.",
+      "topicPrefix": "Topic: {topic}\n\n"
+    },
+    "direct": {
+      "title": "Prefer to reach out directly?",
+      "description": "Our team is always happy to chat about ideas and opportunities to celebrate Korean culture on campus and beyond.",
+      "ctaLabel": "Follow our journey",
+      "ctaDescription": "Get the latest event drops and highlights on Instagram.",
+      "instagram": "@umb_kosa"
+    }
   },
-  "forum": {
-    "title": "Share Your Thoughts Freely",
-    "description": "We are always open to your thoughts and suggestions. Please share your thoughts with us."
+  "story": {
+    "loading": "Loading...",
+    "empty": "There are no posts to display yet."
+  },
+  "api": {
+    "contact": {
+      "failure": "Failed to send message"
+    }
   }
 }

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
 
+import { defaultLocale } from '@/i18n';
+
 export const metadata: Metadata = {
   title: 'UMB | KOSA',
   description:
@@ -42,22 +44,21 @@ const notoSansKR = Noto_Sans_KR({
   display: 'swap',
 });
 
-export function generateStaticParams(): { locale: string }[] {
-  return [{ locale: 'en' }, { locale: 'ko' }];
-}
-
 export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale?: string }>;
 }) {
   const resolvedParams = await params;
-  const safeLocale = resolvedParams.locale || 'en';
+  const locale = resolvedParams?.locale ?? defaultLocale;
 
   return (
-    <html lang={safeLocale} className={notoSansKR.className}>
+    <html lang={locale} className={notoSansKR.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body>{children}</body>
     </html>
   );
