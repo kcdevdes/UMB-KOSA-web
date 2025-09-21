@@ -33,7 +33,7 @@ export default async function AboutPage() {
       linkedInLink: 'https://www.linkedin.com/in/jiyun-lee-263bb0349/',
     },
     {
-      imageSrc: '/images/profiles/evelyn.jpg',
+      imageSrc: '/images/profiles/evelyn_gu.jpg',
       name: t('members.evelynGu.name'),
       position: t('members.evelynGu.position'),
       description: t('members.evelynGu.description'),
@@ -42,7 +42,7 @@ export default async function AboutPage() {
         'https://www.linkedin.com/in/evelyn-gu-9569602a7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     },
     {
-      imageSrc: '/images/profiles/cindy.jpg',
+      imageSrc: '/images/profiles/cindy_lim.jpg',
       name: t('members.dahyeLim.name'),
       position: t('members.dahyeLim.position'),
       description: t('members.dahyeLim.description'),
