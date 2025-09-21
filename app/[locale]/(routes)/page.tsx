@@ -57,7 +57,7 @@ export default async function WelcomePage() {
           paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))',
         }}
       >
-        <p className="text-center text-3xl font-light sm:text-4xl md:text-5xl md:text-end md:text-pretty">
+        <p className="text-center text-3xl font-thin sm:text-4xl md:text-5xl md:text-end">
           {t('tagline')}
         </p>
       </section>
