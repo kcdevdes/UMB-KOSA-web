@@ -9,7 +9,7 @@ export default async function AboutPage() {
 
   const members = [
     {
-      imageSrc: '/images/profiles/wonjung_jin.jpg',
+      imageSrc: '/images/profiles/wonjung_jin_2.jpeg',
       name: t('members.wonjungJin.name'),
       position: t('members.wonjungJin.position'),
       description: t('members.wonjungJin.description'),
@@ -46,18 +46,21 @@ export default async function AboutPage() {
       name: t('members.dahyeLim.name'),
       position: t('members.dahyeLim.position'),
       description: t('members.dahyeLim.description'),
+      instagramLink: 'https://www.instagram.com/ldcindy_/',
     },
     {
       imageSrc: '/images/profiles/jonathan.jpg',
       name: t('members.jonathanChow.name'),
       position: t('members.jonathanChow.position'),
       description: t('members.jonathanChow.description'),
+      instagramLink: 'https://www.instagram.com/jon_chowmein',
     },
     {
-      imageSrc: '/images/profiles/stevens.jpg',
+      imageSrc: '/images/profiles/stevens_2.jpg',
       name: t('members.stevensCharles.name'),
       position: t('members.stevensCharles.position'),
       description: t('members.stevensCharles.description'),
+      instagramLink: 'https://www.instagram.com/_stilstudios/',
     },
   ];
 
