@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface CardProps {
@@ -20,7 +21,7 @@ const PostCard = ({
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img className="w-full" src={imageSrc} alt={title} />
+        <Image className="w-full" src={imageSrc} alt={title} />
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">{title}</div>
           <p className="text-gray-700 text-base">{description} </p>
