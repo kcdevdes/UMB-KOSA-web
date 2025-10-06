@@ -4,6 +4,7 @@
     "nav": {
       "home": "Home",
       "about": "About",
+      "chuseok": "Chuseok",
       "contact": "Contact",
       "story": "Story"
     },
@@ -120,6 +121,67 @@
       "ctaLabel": "Follow our journey",
       "ctaDescription": "Get the latest event drops and highlights on Instagram.",
       "instagram": "@umb_kosa"
+    }
+  },
+  "chuseok": {
+    "hero": {
+      "badge": "Chuseok Harvest Festival",
+      "title": "Discover the Meaning of Chuseok",
+      "description": "Chuseok is Korea’s autumn full moon festival, a time to give thanks for the year’s harvest, honor ancestors, and share abundance with family and neighbors.",
+      "primaryCta": "Explore Traditions",
+      "secondaryCta": "How to Celebrate"
+    },
+    "overview": {
+      "title": "The Meaning of Chuseok",
+      "lede": "Also known as Hangawi, Chuseok is a meaningful harvest festival that celebrates gratitude for the year’s bounty and respect for ancestors.",
+      "paragraphs": [
+        "Families travel to their hometowns to hold ancestral memorial services, express gratitude, and share food together.",
+        "During the holiday, people visit ancestral graves, tidy them, and spend joyful time with relatives they haven’t seen in a while.",
+        "Today, Chuseok continues to embrace its festive spirit with traditional games like ganggangsullae (circle dance), ssireum (Korean wrestling), and even yutnori, a board game enjoyed by all generations."
+      ]
+    },
+    "traditions": {
+      "title": "Chuseok Traditions",
+      "description": "Discover the customs that make Chuseok such a special celebration.",
+      "items": {
+        "songpyeon": {
+          "title": "Making Songpyeon",
+          "description": "Knead half-moon-shaped rice cakes filled with sesame seeds, red beans, or seasonal ingredients, then steam them to perfection."
+        },
+        "charye": {
+          "title": "Charye and Gratitude",
+          "description": "Learn about the ancestral rites that express gratitude and honor family roots."
+        },
+        "folkGames": {
+          "title": "Folk Games and Music",
+          "description": "Experience traditional activities like yutnori, janggu drumming, and mini lessons on ganggangsullae."
+        }
+      }
+    },
+    "community": {
+      "title": "Scenes of Chuseok in Korea",
+      "highlights": {
+        "belonging": {
+          "title": "Homecoming",
+          "description": "Highways and train stations bustle as millions travel to reunite with family during the long holiday."
+        },
+        "culture": {
+          "title": "Gratitude",
+          "description": "Tables are filled with freshly harvested rice, savory jeon, vegetables, and fruit to express thanks to both ancestors and family."
+        },
+        "support": {
+          "title": "Festivals",
+          "description": "Across cities, traditional performances and cultural experiences invite everyone to enjoy and learn about Chuseok."
+        }
+      }
+    },
+    "tips": {
+      "title": "How to Celebrate Chuseok",
+      "items": [
+        "Host a small gathering or potluck to share songpyeon, jeon, and seasonal fruits while catching up with loved ones.",
+        "Learn the rules of yutnori or watch a ganggangsullae dance video together to feel the festive spirit.",
+        "Express gratitude to family and friends, and make a wish under the bright full moon in the evening."
+      ]
     }
   },
   "story": {

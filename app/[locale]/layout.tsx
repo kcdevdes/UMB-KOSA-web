@@ -16,8 +16,8 @@ type Props = {
 };
 
 const messagesMap: Record<Locale, AbstractIntlMessages> = {
-  en: enMessages,
-  ko: koMessages,
+  en: enMessages as unknown as AbstractIntlMessages,
+  ko: koMessages as unknown as AbstractIntlMessages,
 };
 
 export function generateStaticParams() {

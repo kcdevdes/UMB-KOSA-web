@@ -6,9 +6,7 @@ import {useLocale, useTranslations} from 'next-intl';
 
 import {Link, usePathname, useRouter} from '@/i18n';
 
-const NAV_ITEMS = ['/', '/about', '/contact', 
-  // '/story'
-] as const;
+const NAV_ITEMS = ['/', '/about', '/chuseok', '/contact'] as const;
 
 type NavItem = (typeof NAV_ITEMS)[number];
 
