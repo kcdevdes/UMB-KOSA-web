@@ -1,60 +1,48 @@
-[한국어, Korean](https://github.com/kcdevdes/UMB-KOSA-web/blob/main/README-kr.md)
-
 # KOSA - UMass Boston Korean Student Association
 
-Welcome to the official website of the Korean Student Association (KOSA) at UMass Boston! This site serves as a hub for our members, providing updates on events, activities, and community engagement.
+Official repository for the UMass Boston Korean Student Association (KOSA) website. The site helps current and prospective members stay informed about events, leadership, and community initiatives.
 
-## 🚀 What is KOSA
+🌐 Live site: [https://umbkosa.org](https://umbkosa.org)
 
-KOSA is dedicated to connecting Korean students and those interested in Korean culture at UMass Boston. This website aims to:
+## Overview
 
-- Introduce our members and leadership team
-- Document and archive our past and ongoing activities
-- Provide event announcements and updates
-- Foster a strong and inclusive community
+KOSA connects Korean students and the broader UMass Boston community through cultural programming and student support. The website delivers:
 
-## 📌 Features
+- Multilingual pages (English & Korean) powered by `next-intl`
+- Static overviews of the executive board, mission, and featured programs
+- A contact form that routes messages to the team’s shared inbox
+- Instagram-powered highlights on the Story page (via the Graph API)
 
-- **Member Profiles**: Get to know the people behind KOSA.
-- **Event Announcements**: Stay updated with upcoming gatherings and activities.
-- **Activity Highlights**: Browse through our past events and achievements.
-- **Community Engagement**: Opportunities to connect and participate in student life.
+## Tech Stack
 
-## 🔧 Setup Instructions
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript + React 19
+- **Styling**: Tailwind CSS with custom design tokens
+- **Internationalization**: next-intl with locale-aware routing under `app/[locale]/`
+- **Email Delivery**: Nodemailer with SMTP transport
 
-You need `Firebase Emulator` to simulate Firebase actions on your local machine.
-You also need `.env.local` file that stores credentials for accessing Firebase. Contact me if you need.
-Or you can make your own firebase project.
-
-```plain
-EMAIL_USER=
-EMAIL_PASS=
-EMAIL_RECEIVER=
-
-# CLIENT FIREBASE #
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
-
-# FIREBASE ADMIN #
-FIREBASE_PROJECT_ID=
-FIREBASE_CLIENT_EMAIL=
-FIREBASE_PRIVATE_KEY=
-
-NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true # NOT IN PRODUCTION MODE!
-
-# CLOUDINARY #
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
-NEXT_PUBLIC_CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
+## Project Structure
 
 ```
+app/
+├─ layout.tsx                 # Root layout (font, metadata)
+├─ [locale]/                  # Locale-aware routes (en, ko)
+│  └─ (routes)/               # Actual pages (home, about, contact, story...)
+components/                   # Reusable UI building blocks
+lib/email/                    # Nodemailer helpers
+public/locales/               # Translation JSON files
+```
 
-If everything is prepared, try the following commands
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20 (LTS) or newer
+- npm 10+
+- SMTP credentials for the contact form
+- Instagram Graph API access token (optional, for Story page content)
+
+### Installation
 
 ```bash
 git clone https://github.com/kcdevdes/UMB-KOSA-web.git
@@ -63,17 +51,63 @@ npm install
 npm run dev
 ```
 
-## 🤝 Contributing
+Create a `.env.local` file in the project root and populate it with the environment variables listed below.
 
-We welcome contributions from members and volunteers! If you’d like to help improve this website, feel free to fork the repository and submit a pull request.
+The development server runs at [http://localhost:3000](http://localhost:3000). Use the locale prefix in URLs, e.g. `/en/about` or `/ko/contact`.
 
-## 📬 Contact Us
+### Available Scripts
 
-For any inquiries, reach out via email at <gibeom.choi001@umb.edu> or follow us on social media!
+- `npm run dev` – Start the development server (Turbopack)
+- `npm run build` – Create an optimized production build (SSG + ISR)
+- `npm run start` – Serve the production build
+- `npm run lint` – Run the Next.js ESLint ruleset
+
+## Environment Variables
+
+Add these to `.env.local` (do not commit this file). Variables marked **required** must be present for production.
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `CONTACT_RECEIVER_EMAIL` | ✅ | Destination inbox for contact form submissions |
+| `CONTACT_FROM_EMAIL` | ➖ | Custom "from" address (defaults to `SMTP_USER`) |
+| `SMTP_HOST` | ✅ | SMTP server host name |
+| `SMTP_PORT` | ✅ | SMTP port (e.g. 587 for TLS) |
+| `SMTP_USER` | ✅ | SMTP auth user / email |
+| `SMTP_PASS` | ✅ | SMTP auth password or app password |
+| `SMTP_SECURE` | ➖ | Set to `true` when using port 465 |
+
+> Tip: For local development, you can use services like [Mailtrap](https://mailtrap.io/) or [Ethereal](https://ethereal.email/) to test SMTP without sending real emails.
+
+## Localisation Workflow
+
+- Translation files live in `public/locales/en.json` and `public/locales/ko.json`.
+- Use the same key paths across locales. New pages should load translations via `getTranslations('<namespace>')` or `useTranslations('<namespace>')`.
+- To add another language, add its code to `locales` in `i18n.ts`, create the new JSON file in `public/locales`, and update navigation labels.
+
+## Deployment
+
+1. Run `npm run build` to verify the project bundles successfully.
+2. Deploy to any platform that supports Node.js and Next.js (e.g. Vercel, Netlify, Render).
+3. Ensure all required environment variables are configured in the hosting provider.
+
+The build uses static site generation for all routes and supports Incremental Static Regeneration (ISR) on data-dependent endpoints like the Instagram feed.
+
+## Contributing
+
+We welcome contributions from KOSA members and the wider community:
+
+1. Fork the repository and create a topic branch.
+2. Add or update tests if you introduce new logic.
+3. Open a pull request describing your changes. Screenshots or video clips are appreciated for UI updates.
+
+## Contact
+
+Questions or partnership ideas? Email <gibeom.choi001@umb.edu> or connect with us on Instagram [@umbkosa](https://www.instagram.com/umbkosa).
 
 © 2025 KOSA - UMass Boston Korean Student Association. All rights reserved.
 
-## Update Notes
+## Changelog
 
-- 1.0.0 - 2025.03.30 - First Release
-- 2.0.1 - 2025.08.30 - Design Renewal
+- **2.0.2** – Localization refresh, new App Router architecture, updated contact form pipeline
+- **2.0.1 (2025-08-30)** – Design renewal
+- **1.0.0 (2025-03-30)** – Initial release
