@@ -49,11 +49,10 @@ export default async function AboutPage() {
       instagramLink: 'https://www.instagram.com/ldcindy_/',
     },
     {
-      imageSrc: '/images/profiles/jonathan.jpg',
-      name: t('members.jonathanChow.name'),
-      position: t('members.jonathanChow.position'),
-      description: t('members.jonathanChow.description'),
-      instagramLink: 'https://www.instagram.com/jon_chowmein',
+      imageSrc: '/images/profiles/valeria.jpeg',
+      name: t('members.valeriaLindado.name'),
+      position: t('members.valeriaLindado.position'),
+      description: t('members.valeriaLindado.description'),
     },
     {
       imageSrc: '/images/profiles/stevens_2.jpg',
